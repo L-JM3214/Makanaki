@@ -1,0 +1,25 @@
+/* src/components/ContactSection.css */
+
+.contact-section {
+  background: linear-gradient(135deg, #0f071a 0%, #1a0f2e 100%);
+}
+
+.contact-form {
+  background: rgba(38, 10, 48, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 192, 145, 0.2);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 1.5rem;
+  }
+  
+  .contact-form h3 {
+    font-size: 1.75rem;
+  }
+}

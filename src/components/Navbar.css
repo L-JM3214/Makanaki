@@ -1,0 +1,531 @@
+/* src/components/Navbar.css - PREMIUM LUXURY VERSION */
+
+/* ============================================
+   NAVBAR BASE STYLES - LUXURY EDITION
+============================================ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium Glass Morphism Effect */
+.navbar-blur {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: linear-gradient(
+    135deg,
+    rgba(15, 7, 26, 0.92) 0%,
+    rgba(38, 10, 48, 0.88) 100%
+  );
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 192, 145, 0.15);
+  min-height: 85px;
+  animation: navbarSlideIn 0.6s ease-out;
+}
+
+/* Elegant Transparent State */
+.navbar-transparent {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 7, 26, 0.95) 0%,
+    rgba(15, 7, 26, 0.4) 100%
+  );
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-height: 90px;
+}
+
+.navbar-transparent:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 7, 26, 0.98) 0%,
+    rgba(38, 10, 48, 0.7) 100%
+  );
+  box-shadow: 0 4px 20px rgba(255, 192, 145, 0.1);
+}
+
+/* Container with subtle glow */
+nav .container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+/* Container subtle inner glow */
+nav .container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 192, 145, 0.2),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-blur nav .container::before {
+  opacity: 1;
+}
+
+/* ============================================
+   LOGO - LUXURY ANIMATIONS
+============================================ */
+.logo-link {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.logo-link:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 192, 145, 0.05);
+  box-shadow: 0 8px 20px rgba(255, 192, 145, 0.1);
+}
+
+.logo-link img {
+  height: 48px;
+  width: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: all 0.4s ease;
+}
+
+.logo-link:hover img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 6px 12px rgba(255, 192, 145, 0.3));
+}
+
+/* Logo text with golden gradient */
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffc091 0%, #ffd9a3 50%, #ffc091 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 10px rgba(255, 192, 145, 0.2);
+}
+
+.logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ffc091, #ffd9a3, #ffc091);
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 10px rgba(255, 192, 145, 0.4);
+}
+
+.logo-link:hover .logo-text::after {
+  width: 100%;
+}
+
+/* ============================================
+   DESKTOP NAVIGATION - PREMIUM STYLING
+============================================ */
+.nav-desktop-link {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.nav-desktop-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 192, 145, 0.2) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.nav-desktop-link:hover::before {
+  width: 120%;
+  height: 120%;
+}
+
+.nav-desktop-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffc091, transparent);
+  transform: translateX(-50%);
+  transition: width 0.4s ease;
+}
+
+.nav-desktop-link:hover::after {
+  width: 70%;
+}
+
+.nav-desktop-link:hover {
+  color: #ffc091;
+  transform: translateY(-2px);
+  text-shadow: 0 0 15px rgba(255, 192, 145, 0.4);
+}
+
+.nav-desktop-link.active {
+  color: #ffc091;
+  font-weight: 600;
+  background: rgba(255, 192, 145, 0.08);
+  text-shadow: 0 0 20px rgba(255, 192, 145, 0.5);
+}
+
+.nav-desktop-link.active::after {
+  width: 80%;
+  background: linear-gradient(90deg, #ffc091, #ffd9a3, #ffc091);
+  box-shadow: 0 0 10px rgba(255, 192, 145, 0.5);
+}
+
+/* ============================================
+   BOOK NOW BUTTON - LUXURY CALL TO ACTION
+============================================ */
+.book-now-btn {
+  position: relative;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #ffc091 0%, #ffd9a3 100%);
+  color: #260a30;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 4px 15px rgba(255, 192, 145, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+
+.book-now-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.8s ease;
+  z-index: -1;
+}
+
+.book-now-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 10px 30px rgba(255, 192, 145, 0.5),
+    0 0 30px rgba(255, 192, 145, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, #ffd9a3 0%, #ffc091 100%);
+}
+
+.book-now-btn:hover::before {
+  left: 100%;
+}
+
+.book-now-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ============================================
+   MOBILE MENU - PREMIUM EXPERIENCE
+============================================ */
+.mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  background: rgba(255, 192, 145, 0.1);
+  border: 1px solid rgba(255, 192, 145, 0.2);
+  border-radius: 10px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(10px);
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 192, 145, 0.2);
+  transform: rotate(180deg);
+  box-shadow: 0 4px 15px rgba(255, 192, 145, 0.3);
+}
+
+.mobile-menu-btn svg {
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover svg {
+  stroke: #ffc091;
+}
+
+/* Luxury Mobile Menu */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  animation: slideDownLuxury 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  background: linear-gradient(
+    135deg,
+    rgba(15, 7, 26, 0.98) 0%,
+    rgba(38, 10, 48, 0.95) 100%
+  );
+  border-bottom: 1px solid rgba(255, 192, 145, 0.2);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 192, 145, 0.1);
+  max-height: 75vh;
+  overflow-y: auto;
+  z-index: 999;
+  border-radius: 0 0 20px 20px;
+}
+
+.mobile-menu-link {
+  position: relative;
+  padding: 1.25rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-left: 4px solid transparent;
+  background: rgba(255, 255, 255, 0.02);
+  margin: 2px;
+  border-radius: 8px;
+}
+
+.mobile-menu-link:hover {
+  color: #ffc091;
+  padding-left: 2.5rem;
+  border-left-color: #ffc091;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 192, 145, 0.1) 0%,
+    rgba(255, 192, 145, 0.05) 50%,
+    transparent 100%
+  );
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(255, 192, 145, 0.1);
+}
+
+.mobile-menu-link.active {
+  color: #ffc091;
+  border-left-color: #ffc091;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 192, 145, 0.15) 0%,
+    rgba(255, 192, 145, 0.08) 100%
+  );
+  padding-left: 2rem;
+}
+
+.mobile-menu-link.active::before {
+  content: '→';
+  position: absolute;
+  left: 1rem;
+  color: #ffc091;
+  font-weight: bold;
+  animation: bounceArrow 1s infinite;
+}
+
+/* ============================================
+   ANIMATIONS - LUXURY MOTION
+============================================ */
+@keyframes navbarSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownLuxury {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+    max-height: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 75vh;
+  }
+}
+
+@keyframes bounceArrow {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 192, 145, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 192, 145, 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+============================================ */
+@media (max-width: 768px) {
+  .navbar-blur,
+  .navbar-transparent {
+    min-height: 75px;
+  }
+  
+  nav .container {
+    padding: 0 1.25rem;
+  }
+  
+  .logo-link {
+    height: 55px;
+  }
+  
+  .logo-link img {
+    height: 42px;
+  }
+  
+  .mobile-menu {
+    max-height: 80vh;
+    border-radius: 0 0 15px 15px;
+  }
+  
+  .mobile-menu-link {
+    padding: 1.1rem 1.5rem;
+    font-size: 1.05rem;
+  }
+  
+  .book-now-btn {
+    width: calc(100% - 2.5rem);
+    margin: 1.5rem auto;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .mobile-menu-link {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .book-now-btn {
+    width: calc(100% - 2rem);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+============================================ */
+.text-glow {
+  text-shadow: 0 0 10px rgba(255, 192, 145, 0.5);
+}
+
+.shadow-gold {
+  box-shadow: 0 0 30px rgba(255, 192, 145, 0.3);
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, #0f071a, #0f071a) padding-box,
+              linear-gradient(135deg, #ffc091, #ffd9a3) border-box;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .nav-desktop-link,
+  .mobile-menu-link {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+  
+  .book-now-btn {
+    background: #ffc091;
+    color: #000000;
+    border: 2px solid #000000;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .navbar-blur {
+    background: rgba(10, 5, 18, 0.95);
+  }
+  
+  .navbar-transparent {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 5, 18, 0.95) 0%,
+      rgba(10, 5, 18, 0.4) 100%
+    );
+  }
+}

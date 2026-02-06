@@ -1,0 +1,67 @@
+/* src/components/FeaturesSection.css */
+
+.features03 {
+  position: relative;
+}
+
+.item-wrapper {
+  position: relative;
+  border-radius: 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.item-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.item-wrapper:hover .item-img img {
+  transform: scale(1.05);
+}
+
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-head {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .item {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* No spacing mode */
+.no-spacing .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.no-spacing .item {
+  padding: 0;
+  margin: 0;
+}
+
+/* Dark background adjustment (if you use dark bg later) */
+.dark-bg .mbr-section-title,
+.dark-bg .mbr-text,
+.dark-bg .item-title,
+.dark-bg .mbr-section-btn {
+  color: #ffffff !important;
+}

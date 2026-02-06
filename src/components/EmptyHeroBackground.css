@@ -1,0 +1,32 @@
+/* src/components/EmptyHeroBackground.css */
+
+.header18 { /* keeping class name for consistency if you want to style globally */
+  position: relative;
+}
+
+iframe {
+  transform: scale(1.01); /* slight overscale to avoid edge gaps */
+}
+
+.mbr-fallback-image {
+  display: block;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.mbr-fallback-image.disabled {
+  display: none;
+}
+
+/* Responsive padding fallback */
+@media (max-width: 767px) {
+  section:not(.min-h-screen) {
+    padding-top: 10rem !important;
+    padding-bottom: 4rem !important;
+  }
+}

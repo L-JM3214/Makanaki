@@ -1,0 +1,70 @@
+/* src/components/ArticleSection.css */
+
+.article8 {
+  position: relative;
+}
+
+.card-wrapper {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-content-text {
+  padding: 2rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-content-text {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-content-text {
+    padding: 4rem 5rem;
+  }
+}
+
+.card-title {
+  color: #000000;
+  line-height: 1.2;
+}
+
+.item {
+  margin-bottom: 2.5rem;
+}
+
+.item h4 {
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.item p {
+  color: #333333;
+  line-height: 1.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .card-title {
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .item h4 {
+    font-size: 1.5rem;
+  }
+  
+  .item p {
+    font-size: 1rem;
+  }
+}
+
+/* Hover effect for card */
+.card-wrapper:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}

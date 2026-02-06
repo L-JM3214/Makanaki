@@ -1,0 +1,48 @@
+/* src/components/TestimonialsSection.css */
+
+.people05 {
+  position: relative;
+}
+
+.testimonials-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.testimonials-scroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.item-wrapper {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.card-text {
+  color: #000000;
+  text-align: center;
+}
+
+.card-title,
+.img-wrapper {
+  text-align: center;
+}
+
+.content-head {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .testimonials-scroll {
+    gap: 1rem;
+  }
+  .item {
+    min-width: 90%;
+  }
+}

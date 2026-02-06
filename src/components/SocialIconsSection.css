@@ -1,0 +1,46 @@
+/* src/components/SocialIconsSection.css */
+
+.social05 {
+  position: relative;
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.soc-item {
+  margin: 8px;
+  transition: transform 0.3s ease;
+}
+
+.soc-item:hover {
+  transform: scale(1.15);
+}
+
+.soc-item a:hover .mbr-iconfont {
+  background-color: #f7f7f7; /* activeColor from prop */
+  color: #393193; /* iconColor */
+}
+
+.mbr-iconfont {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 32px;
+  background-color: #f7f7f7;
+  color: #393193;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive spacing */
+@media (max-width: 767px) {
+  .social-row {
+    gap: 1.5rem;
+  }
+}

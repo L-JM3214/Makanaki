@@ -1,0 +1,242 @@
+/* src/components/Footer.css */
+
+/* Main footer container */
+.footer-container {
+  background: #0f071a;
+  color: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(255, 192, 145, 0.15);
+}
+
+/* Logo + brand name area */
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo-img {
+  height: 3.5rem; /* 56px */
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffc091;
+}
+
+/* Description paragraph */
+.footer-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  max-width: 320px;
+}
+
+/* Column headings */
+.section-heading {
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: #ffc091;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+}
+
+/* Quick Links */
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quick-link {
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.quick-link:hover {
+  color: #ffc091;
+  padding-left: 0.5rem;
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-icon {
+  width: 3rem;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  color: white;
+}
+
+.social-icon.facebook:hover {
+  background: #1877f2;
+}
+
+.social-icon.instagram:hover {
+  background: #e4405f;
+}
+
+.social-icon.twitter:hover {
+  background: #1da1f2;
+}
+
+.social-icon.tiktok:hover {
+  background: #000000;
+}
+
+/* Contact Info */
+.contact-info {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.contact-item {
+  margin-bottom: 0.5rem;
+}
+
+/* Bottom Bar */
+.bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  margin-top: 3rem;
+}
+
+.copyright {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+}
+
+.legal-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.legal-link {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.legal-link:hover {
+  color: #ffc091;
+}
+
+/* Grid layout adjustments */
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .footer-container {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+  
+  .brand-section {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .footer-description {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .section-heading {
+    text-align: center;
+  }
+  
+  .quick-links {
+    align-items: center;
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+  
+  .contact-info {
+    text-align: center;
+  }
+  
+  .bottom-bar {
+    text-align: center;
+  }
+  
+  .legal-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Animation for social icons */
+@keyframes socialIconHover {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.social-icon:hover {
+  animation: socialIconHover 0.3s ease;
+}
+
+/* Hover effects for links */
+.quick-link::before {
+  content: '→';
+  opacity: 0;
+  margin-right: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.quick-link:hover::before {
+  opacity: 1;
+}
+
+/* Add subtle gradient to bottom border */
+.bottom-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ffc091, transparent);
+  opacity: 0.3;
+}

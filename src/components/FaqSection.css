@@ -1,0 +1,43 @@
+/* src/components/FaqSection.css */
+
+.faq-section {
+  position: relative;
+}
+
+.faq-item {
+  transition: all 0.3s ease;
+}
+
+.faq-item[open] {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.faq-item summary {
+  list-style: none;
+  outline: none;
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] summary .arrow {
+  transform: rotate(45deg);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+
+.faq-item[open] .arrow {
+  transform: rotate(45deg);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .faq-item {
+    padding: 1rem;
+  }
+}
