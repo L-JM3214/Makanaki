@@ -1,5 +1,4 @@
-// src/components/HeroSection.jsx
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './HeroSection.css';
 import heroVideo from '../assets/Video3.mp4';
 import fallbackImage from '../assets/Image011.jpeg';
@@ -7,122 +6,125 @@ import fallbackImage from '../assets/Image011.jpeg';
 const HeroSection = ({
   fullScreen = true,
   fullWidth = true,
-  paddingTop = 20,
-  paddingBottom = 4,
-  contentWidth = 10,
   showTitle = true,
-  showSubtitle = false,
+  showSubtitle = true,
   showText = true,
   showButtons = true,
-  verticalAlign = 'center',
-  horizontalAlign = 'flex-start',
   bg = { type: 'video' },
   overlay = true,
-  overlayColor = '#000000',
-  overlayOpacity = 0.5,
 }) => {
-  const isVideo = bg.type === 'video';
-  const isImage = bg.type === 'image';
+  const videoRef = useRef(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
 
-  // Use the imported Video3.mp4 when type is 'video'
-  const videoSrc = isVideo ? heroVideo : null;
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  const sectionStyle = {};
-  if (!fullScreen) {
-    sectionStyle.paddingTop = `${paddingTop}rem`;
-    sectionStyle.paddingBottom = `${paddingBottom}rem`;
-  }
+    const attemptPlay = () => {
+      video.play()
+        .then(() => {
+          setVideoLoaded(true);
+          setShowPlayButton(false);
+        })
+        .catch(() => setShowPlayButton(true));
+    };
 
-  // Background handling (color, image, or video)
-  if (bg.type === 'color') {
-    sectionStyle.backgroundColor = bg.value || '#260a30';
-  } else if (isImage) {
-    sectionStyle.backgroundImage = `url(${bg.value})`;
-    sectionStyle.backgroundSize = 'cover';
-    sectionStyle.backgroundPosition = 'center';
-  }
+    attemptPlay();
 
-  const containerClass = fullWidth ? 'w-full' : 'max-w-7xl mx-auto px-6';
+    const handleInteraction = () => {
+      attemptPlay();
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
 
-  // Fix: Convert verticalAlign to proper CSS classes
-  const verticalAlignClass = verticalAlign === 'center' ? 'justify-center' : 
-                             verticalAlign === 'top' ? 'justify-start' : 
-                             'justify-end';
-  
-  // Fix: Convert contentWidth to proper width classes
-  const contentWidthClass = contentWidth === 10 ? 'md:w-10/12' : 
-                           contentWidth === 9 ? 'md:w-9/12' : 
-                           contentWidth === 8 ? 'md:w-8/12' : 
-                           'md:w-full';
+    document.addEventListener('click', handleInteraction, { once: true });
+    document.addEventListener('touchstart', handleInteraction, { once: true });
+
+    return () => {
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
+  }, []);
+
+  const handlePlayClick = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setShowPlayButton(false);
+    }
+  };
 
   return (
     <section
-      id="home" // FIXED: lowercase "id" not "Id"
-      className={`relative overflow-hidden text-white ${fullScreen ? 'min-h-screen' : 'h-auto'}`}
-      style={sectionStyle}
+      className="hero-section relative w-full h-screen overflow-hidden bg-[#260a30]"
+      id="home"
     >
-      {/* Video Background - using Video3.mp4 */}
-      {isVideo && videoSrc && (
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-          >
-            <source src={videoSrc} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="hero-video absolute inset-0 w-full h-full object-cover"
+          onLoadedData={() => setVideoLoaded(true)}
+          onCanPlay={() => setVideoLoaded(true)}
+          onError={(e) => console.error('Video error:', e)}
+        >
+          <source src={heroVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-          {/* Fallback image - Image011.jpeg */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${fallbackImage})` }}
-          />
-        </div>
-      )}
-
-      {/* Overlay (darkens the video/image) */}
-      {(overlay && bg.type !== 'color') && (
+        {/* Fallback Image */}
         <div
-          className="absolute inset-0 z-10"
-          style={{ backgroundColor: overlayColor, opacity: overlayOpacity }}
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+          style={{
+            backgroundImage: `url(${fallbackImage})`,
+            opacity: videoLoaded ? 0 : 1,
+          }}
         />
+      </div>
+
+      {/* Overlay */}
+      {overlay && (
+        <div className="hero-overlay absolute inset-0 z-10 pointer-events-none" />
       )}
 
       {/* Main Content */}
-      <div className={`relative z-20 flex flex-col ${verticalAlignClass} h-full ${containerClass} pt-32 md:pt-40`}>
-        <div className={`w-full ${contentWidthClass} text-center md:text-left px-6 md:px-12`}>
+      <div className="relative z-20 h-full flex items-center justify-center px-6 md:px-12">
+        <div className="max-w-5xl w-full text-center md:text-left">
           {showTitle && (
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight font-playfair text-[#ffc091]">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight font-playfair text-gradient-gold animate-fade-up text-glow">
               Makanaki Travels
             </h1>
           )}
 
           {showSubtitle && (
-            <h2 className="text-3xl md:text-5xl mb-8 font-semibold text-gray-200">
-              Luxury Chauffeur Service in Nairobi
+            <h2 className="text-2xl md:text-4xl lg:text-5xl mb-8 font-light text-white/90 animate-fade-up delay-100">
+              Luxury Chauffeur & Car Hire 
             </h2>
           )}
 
           {showText && (
-            <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto md:mx-0 opacity-90 text-gray-100">
-              Arrive in elegance. Travel in comfort. Premium vehicles with professional drivers.
+            <p className="text-lg md:text-xl lg:text-2xl mb-12 max-w-3xl mx-auto md:mx-0 text-gray-100 leading-relaxed animate-fade-up delay-200">
+              | Cruise in Luxury | Arrive in elegance | Travel in comfort |
             </p>
           )}
 
           {showButtons && (
-            <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start animate-fade-up delay-300">
               <a
-                href="#book"
-                className="bg-[#ffc091] text-[#260a30] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffd9a3] transition-all duration-300 hover:scale-105 shadow-lg inline-block text-center"
+                href="#contact"
+                className="btn-primary-gold px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[180px] md:min-w-[220px]"
               >
                 Book Now
               </a>
+
               <a
                 href="#fleet"
-                className="border-2 border-[#ffc091] text-[#ffc091] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffc091]/10 transition-all duration-300 hover:scale-105 inline-block text-center"
+                className="border-2 border-[#ffc091] text-[#ffc091] px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg hover:bg-[#ffc091]/10 transition-all duration-300 hover:shadow-xl min-w-[180px] md:min-w-[220px]"
               >
                 View Fleet
               </a>
@@ -131,13 +133,37 @@ const HeroSection = ({
         </div>
       </div>
 
-      {/* Scroll Indicator for fullscreen */}
-      {fullScreen && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-          <svg className="w-6 h-6 text-[#ffc091]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      {/* Scroll Indicator - just mouse icon, very low bottom center, over video, no text */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30">
+        <svg
+          className="w-7 h-7 md:w-8 md:h-8 text-[#1e3a8a]/30 animate-bounce-slow drop-shadow-glow"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          strokeWidth="1.2"
+        >
+          {/* Mouse body - thin outline */}
+          <rect x="6" y="2" width="12" height="18" rx="6" fill="none" stroke="currentColor" />
+          {/* Scroll wheel */}
+          <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+      </div>
+
+      {/* Manual Play Button */}
+      {showPlayButton && (
+        <button
+          onClick={handlePlayClick}
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-[#ffc091] to-[#ffd9a3] text-[#260a30] flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group"
+          aria-label="Play video"
+          title="Click to play video"
+        >
+          <svg className="w-7 h-7 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
           </svg>
-        </div>
+          <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs py-1 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            Play Video
+          </span>
+        </button>
       )}
     </section>
   );

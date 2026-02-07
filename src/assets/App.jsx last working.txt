@@ -26,7 +26,12 @@ function App() {
           ID: home (for navbar navigation)
       ================================================== */}
       <section id="home">
-        <HeroSection bg={{ type: 'video' }}
+        <HeroSection
+          fullScreen={true}
+          bg={{ 
+            type: 'video', 
+            value: heroVideo
+          }}
           fallbackImage={fallbackImage}
           overlay={true}
           overlayColor="#000000"

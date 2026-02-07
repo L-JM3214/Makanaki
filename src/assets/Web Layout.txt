@@ -1,0 +1,154 @@
+COMPONENTS ARRANGEMENT (Top to Bottom):
+1. Navbar (Fixed at top)
+Logo + "Makanaki" text
+
+Navigation links: Home, Our Fleet, Services, About Us, Testimonials, Contact
+
+"Book Now" button (CTA)
+
+Mobile menu (hamburger icon)
+
+2. HeroSection (Full-screen video/image background)
+Main title: "Makanaki Travels" in gold gradient
+
+Subtitle: "Luxury Chauffeur Service in Nairobi"
+
+Description text: "Arrive in elegance. Travel in comfort. Premium vehicles with professional drivers."
+
+Two buttons: "Book Now" (primary), "View Fleet" (secondary)
+
+Scroll indicator (down arrow)
+
+3. ServicesSection (Your services/features)
+Section title: "Our Premium Services"
+
+Service cards (4-6 items):
+
+Airport Transfers
+
+Corporate Travel
+
+Wedding & Events
+
+City Tours
+
+Hourly Chauffeur
+
+VIP Concierge
+
+Icons + descriptions for each service
+
+4. FleetSection (Vehicle showcase)
+Section title: "Our Luxury Fleet"
+
+Car cards with:
+
+High-quality car images
+
+Car name/type (Mercedes S-Class, BMW 7 Series, etc.)
+
+Features list
+
+"Book This Vehicle" button
+
+Filter options (Sedan, SUV, Luxury, VIP)
+
+5. WhyChooseUsSection (USP/benefits)
+Section title: "Why Choose Makanaki Travels"
+
+Benefit points:
+
+Professional Chauffeurs
+
+24/7 Availability
+
+Luxury Vehicles
+
+Punctuality Guaranteed
+
+Safety First
+
+Competitive Pricing
+
+6. TestimonialsSection (Customer reviews)
+Section title: "What Our Clients Say"
+
+Testimonial cards with:
+
+Customer photos
+
+Star ratings (★★★★★)
+
+Review text
+
+Customer name & date
+
+7. BookingSection (Contact/booking form)
+Section title: "Book Your Luxury Ride"
+
+Contact form fields:
+
+Name, Email, Phone
+
+Pickup Location, Destination
+
+Date & Time
+
+Vehicle Preference
+
+Special Requests
+
+"Submit Booking" button
+
+8. ContactSection (Contact info)
+Contact details:
+
+Phone numbers
+
+Email address
+
+Physical address
+
+Operating hours
+
+Map integration (Google Maps)
+
+9. Footer (Bottom of page)
+Logo
+
+Quick links
+
+Social media icons
+
+Copyright notice
+
+Privacy policy & Terms
+
+SUGGESTED COMPONENT STRUCTURE:
+text
+App.jsx
+├── Navbar.jsx (fixed top)
+├── HeroSection.jsx (full screen)
+├── ServicesSection.jsx
+├── FleetSection.jsx
+├── WhyChooseUsSection.jsx
+├── TestimonialsSection.jsx
+├── BookingSection.jsx
+├── ContactSection.jsx
+└── Footer.jsx
+VISUAL FLOW:
+Hero (Immediate impact - video + bold message)
+
+Services (What you offer - build credibility)
+
+Fleet (Show your assets - visual appeal)
+
+Why Us (Build trust - unique selling points)
+
+Testimonials (Social proof - customer validation)
+
+Booking (Call to action - conversion point)
+
+Contact (Easy access - multiple contact methods)
+
+Footer (Additional info & legal)
