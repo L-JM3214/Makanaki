@@ -133,19 +133,6 @@
   }
 }
 
-/* Scroll indicator */
-.animate-bounce-slow {
-  animation: bounce-slow 5s infinite ease-in-out;
-}
-
-@keyframes bounce-slow {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
 
 .drop-shadow-glow {
   filter: drop-shadow(0 0 6px rgba(30, 58, 138, 0.3));

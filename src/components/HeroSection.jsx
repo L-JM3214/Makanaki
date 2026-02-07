@@ -1,3 +1,4 @@
+// src/components/HeroSection.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './HeroSection.css';
 import heroVideo from '../assets/Video3.mp4';
@@ -103,30 +104,23 @@ const HeroSection = ({
 
           {showSubtitle && (
             <h2 className="text-2xl md:text-4xl lg:text-5xl mb-8 font-light text-white/90 animate-fade-up delay-100">
-              Luxury Chauffeur & Car Hire 
+              Exectuive Car Hire & Chauffer 
             </h2>
           )}
 
           {showText && (
             <p className="text-lg md:text-xl lg:text-2xl mb-12 max-w-3xl mx-auto md:mx-0 text-gray-100 leading-relaxed animate-fade-up delay-200">
-              | Cruise in Luxury | Arrive in elegance | Travel in comfort |
+              | Cruise in Luxury | 
             </p>
           )}
 
           {showButtons && (
-            <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start animate-fade-up delay-300">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start animate-fade-up delay-300 mb-4 md:mb-8">
               <a
                 href="#contact"
-                className="btn-primary-gold px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[180px] md:min-w-[220px]"
+                className="px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[180px] md:min-w-[220px] bg-[#1e3a8a]/30 backdrop-blur-md border border-white/30 text-white hover:bg-[#1e3a8a]/50 hover:border-white/50"
               >
                 Book Now
-              </a>
-
-              <a
-                href="#fleet"
-                className="border-2 border-[#ffc091] text-[#ffc091] px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg hover:bg-[#ffc091]/10 transition-all duration-300 hover:shadow-xl min-w-[180px] md:min-w-[220px]"
-              >
-                View Fleet
               </a>
             </div>
           )}
