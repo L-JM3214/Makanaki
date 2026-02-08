@@ -1,37 +1,218 @@
 /* src/components/Header09.css */
 
+/* Base header styles */
 .header09 {
   position: relative;
   display: flex;
+  background-attachment: fixed;
+  width: 100%;
+  min-height: 100vh;
 }
 
+/* Video background container */
+.header09 .absolute.inset-0.z-0 {
+  filter: brightness(0.8);
+  overflow: hidden;
+}
+
+/* Video iframe full coverage */
+.header09 iframe {
+  transform: scale(1.01);
+  min-width: 100%;
+  min-height: 100%;
+  pointer-events: none;
+}
+
+/* Content wrapper */
 .content-wrap {
   margin: 0 auto;
+  animation: fadeInUp 1s ease-out 0.3s both;
 }
 
+/* Title styles */
+.header09 h1 {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+  font-family: 'Playfair Display', serif;
+}
+
+.header09 h1 b {
+  background: linear-gradient(135deg, #ffc091, #d4a574, #b38c5e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtitle styles */
+.header09 h2 {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+/* Text paragraph */
+.header09 p {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* Button styles */
+.header09 a {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary button */
+.header09 a.bg-\[\#ffc091\] {
+  box-shadow: 0 10px 40px rgba(255, 192, 145, 0.3);
+  border: 2px solid transparent;
+}
+
+.header09 a.bg-\[\#ffc091\]:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(255, 192, 145, 0.4);
+}
+
+/* Secondary button */
+.header09 a.border-2 {
+  background: linear-gradient(135deg, transparent, rgba(255, 192, 145, 0.1));
+  backdrop-filter: blur(10px);
+}
+
+.header09 a.border-2:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(255, 192, 145, 0.2);
+}
+
+/* Overlay */
+.header09 .absolute.inset-0.z-10 {
+  transition: opacity 0.6s ease;
+}
+
+/* Responsive design */
 @media (max-width: 767px) {
+  .header09 {
+    min-height: 80vh;
+    background-attachment: scroll;
+  }
+  
   .content-wrap {
     width: 100%;
     max-width: 800px;
     padding: 0 1.5rem;
   }
+  
   h1, h2, p {
     text-align: center !important;
   }
+  
+  .header09 h1 {
+    font-size: 3rem !important;
+    line-height: 1.2;
+  }
+  
+  .header09 h2 {
+    font-size: 2rem !important;
+  }
+  
+  .header09 p {
+    font-size: 1.1rem !important;
+    text-align: center !important;
+  }
+  
+  .header09 .flex.flex-col {
+    gap: 1rem;
+  }
+  
+  .header09 a {
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    width: 100%;
+    text-align: center;
+  }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  .content-wrap {
+    min-width: 70%;
+  }
+  
+  .header09 h1 {
+    font-size: 4rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
   .content-wrap {
     min-width: 50%;
   }
 }
 
-/* Video iframe full coverage */
-iframe {
-  transform: scale(1.01);
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Hover lift on buttons */
-a:hover {
-  transform: translateY(-3px);
+/* Button animations */
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 10px 40px rgba(255, 192, 145, 0.3);
+  }
+  50% {
+    box-shadow: 0 15px 50px rgba(255, 192, 145, 0.5);
+  }
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+  .header09,
+  .header09 a,
+  .header09 h1,
+  .header09 h2,
+  .content-wrap {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .header09 a:hover {
+    transform: none !important;
+  }
+}
+
+/* Loading state */
+.header09.loading {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.header09.loaded {
+  opacity: 1;
+}
+
+/* Gradient overlay for better text readability */
+.header09::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ensure content stays above overlay */
+.header09 .relative.z-20 {
+  z-index: 20;
 }

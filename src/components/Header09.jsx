@@ -16,9 +16,7 @@ const Header09 = ({
   horizontalAlign = 'center',   // flex-start / center / flex-end
   bg = {
     type: 'image',
-    // value: '#F1C0E8',           // pastel pink from example
-    value: 'https://t4.ftcdn.net/jpg/09/18/16/17/360_F_918161745_jGLg8lWftkKjIMhl8eEjTi8OihEp26Nx.jpg',   // or local import
-    // value: 'https://player.vimeo.com/video/428046504', // vimeo example
+    value: 'https://t4.ftcdn.net/jpg/09/18/16/17/360_F_918161745_jGLg8lWftkKjIMhl8eEjTi8OihEp26Nx.jpg',
   },
   fallbackImage = '/images/fallback-hero.jpg',
   overlay = true,
@@ -104,13 +102,13 @@ const Header09 = ({
             <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
               <a
                 href="#book"
-                className="bg-[#ffc091] text-[#260a30] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffd9a3] transition shadow-lg"
+                className="bg-[#ffc091] text-[#260a30] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffd9a3] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
               >
                 Book Your Luxury Car
               </a>
               <a
                 href="#fleet"
-                className="border-2 border-[#ffc091] text-[#ffc091] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffc091]/10 transition"
+                className="border-2 border-[#ffc091] text-[#ffc091] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffc091]/10 transition-all duration-300 hover:border-[#ffd9a3] hover:text-[#ffd9a3]"
               >
                 View Fleet
               </a>

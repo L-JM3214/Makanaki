@@ -3,7 +3,7 @@ import Navbar from './components/Navbar.jsx';
 import HeroSection from './components/HeroSection.jsx';
 import VideoSection from './components/VideoSection.jsx';
 import FeaturesSection from './components/FeaturesSection.jsx';
-import ImageCarouselSection from './components/ImageCarouselSection.jsx';
+//import ImageCarouselSection from './components/ImageCarouselSection.jsx';
 import Header09 from './components/Header09.jsx';
 import CarGallerySection from './components/CarGallerySection.jsx';
 import FaqSection from './components/FaqSection.jsx';
@@ -48,7 +48,7 @@ function App() {
           Cinematic full-screen image carousel (events showcase)
           ID: fleet (for navbar navigation)
       ================================================== */}
-      <section id="fleet">
+      {/*<section id="fleet">
         <ImageCarouselSection
           fullScreen={true}
           fullWidth={true}
@@ -60,7 +60,7 @@ function App() {
             value: fallbackImage
           }}
         />
-      </section>
+      </section>*/}
 
       {/* ==================================================
           Features / Grand Occasions cards

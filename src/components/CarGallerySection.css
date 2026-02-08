@@ -1,33 +1,428 @@
 /* src/components/CarGallerySection.css */
 
-.car-gallery {
-  position: relative;
+/* Root luxury variables */
+:root {
+  --luxury-gold: #ffc091;
+  --luxury-gold-dark: #d4a574;
+  --luxury-gold-light: #ffd9a3;
+  --text-dark: #260a30;
+  --bg-white: #ffffff;
+  --navy-blue: #1e3a8a;
+  --navy-blue-hover: #1e3a8a;
+  --shadow-soft: 0 20px 60px -15px rgba(38, 10, 48, 0.08);
+  --shadow-glow: 0 30px 80px -20px rgba(212, 165, 116, 0.12);
+  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Section base */
+.car-gallery {
+  position: relative;
+  background: var(--bg-white);
+  overflow: hidden;
+}
+
+/* Gallery scroll container */
 .gallery-scroll {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  position: relative;
 }
 
 .gallery-scroll::-webkit-scrollbar {
   display: none;
 }
 
+/* Hide scrollbar utility */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
 }
 
+/* Individual car card - luxury white glassmorphism */
 .car-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 165, 116, 0.15);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  z-index: 5;
+}
+
+.car-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--luxury-gold), var(--luxury-gold-dark));
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .car-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-16px);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(212, 165, 116, 0.35);
+}
+
+.car-card:hover::after {
+  opacity: 1;
+}
+
+/* Image styling */
+.car-card img {
+  transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  position: relative;
+}
+
+.car-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Image overlay gradient */
+.car-card .relative.overflow-hidden::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(38, 10, 48, 0.3) 0%, transparent 60%);
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
+  z-index: 2;
+}
+
+.car-card:hover .relative.overflow-hidden::before {
+  opacity: 0.7;
+}
+
+/* Top Navigation Arrows - luxury style */
+.car-gallery button[aria-label^="Scroll"][class*="absolute"] {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  color: var(--text-dark);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  z-index: 30;
+}
+
+.car-gallery button[aria-label^="Scroll"][class*="absolute"]:hover {
+  background: linear-gradient(135deg, var(--luxury-gold-light), var(--luxury-gold));
+  color: white;
+  transform: scale(1.12);
+  box-shadow: 0 20px 50px rgba(212, 165, 116, 0.25);
+  border-color: var(--luxury-gold);
+}
+
+/* Bottom Navigation Buttons */
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll left"],
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll right"] {
+  background: white;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  color: #260a30;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll left"]:hover,
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll right"]:hover {
+  background: rgba(255, 192, 145, 0.1);
+  border-color: #d4a574;
+  color: #d4a574;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.15);
+}
+
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll left"] span:first-child,
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll right"] span:last-child {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll left"]:hover span:first-child {
+  transform: translateX(-2px);
+}
+
+.car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll right"]:hover span:last-child {
+  transform: translateX(2px);
+}
+
+/* Grouped Pagination Indicators - Navy Blue (inactive) / White (active) */
+.car-gallery .flex.justify-center.items-center.gap-4 button[aria-label^="Go to"] {
+  width: 6px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--navy-blue);
+  opacity: 0.6;
+  transition: all 0.4s ease;
+  margin: 0 2px;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover state for indicators */
+.car-gallery .flex.justify-center.items-center.gap-4 button[aria-label^="Go to"]:hover {
+  background: var(--navy-blue-hover);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Active state for indicators - White with subtle glow */
+.car-gallery .flex.justify-center.items-center.gap-4 button[aria-label^="Go to"][class*="bg-white"] {
+  width: 24px;
+  height: 3px;
+  background: white;
+  opacity: 1;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+/* Auto-scroll toggle button */
+.car-gallery button[onClick*="setIsAutoScrolling"] {
+  background: white;
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  transition: var(--transition-smooth);
+}
+
+.car-gallery button[onClick*="setIsAutoScrolling"]:hover {
+  border-color: rgba(212, 165, 116, 0.5);
+}
+
+.car-gallery button[onClick*="setIsAutoScrolling"] span {
+  transition: var(--transition-smooth);
+}
+
+.car-gallery button[onClick*="setIsAutoScrolling"][class*="from-[#d4a574]"] span {
+  background: var(--text-dark);
+  transform: translateX(28px);
+}
+
+/* Call to action button - More rounded rectangle */
+.car-gallery button:has(span:contains("Reserve Your Experience")) {
+  background: linear-gradient(135deg, var(--text-dark), #4a1e4d);
+  border: none;
+  color: white;
+  transition: var(--transition-smooth);
+  border-radius: 20px !important;
+  padding: 1rem 3.5rem !important;
+  font-size: 1.125rem !important;
+  font-weight: 500;
+  min-width: 300px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px -15px rgba(38, 10, 48, 0.2);
+}
+
+.car-gallery button:has(span:contains("Reserve Your Experience")) {
+  background: linear-gradient(135deg, var(--text-dark), #4a1e4d);
+  border: 2px solid transparent; /* Start with transparent border */
+  color: white;
+  transition: var(--transition-smooth);
+  border-radius: 20px !important;
+  padding: 1rem 3.5rem !important;
+  font-size: 1.125rem !important;
+  font-weight: 500;
+  min-width: 300px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px -15px rgba(38, 10, 48, 0.2);
+}
+
+.car-gallery button:has(span:contains("Reserve Your Experience")):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 70px -10px rgba(212, 165, 116, 0.3);
+  background: linear-gradient(135deg, #4a1e4d, var(--text-dark));
+  border-image: linear-gradient(135deg, var(--luxury-gold), var(--luxury-gold-dark)) 1;
+}
+
+/* Or even simpler - just change border color on hover */
+.car-gallery button:has(span:contains("Reserve Your Experience")):hover {
+  border-color: var(--luxury-gold);
+}
+
+.car-gallery button:has(span:contains("Reserve Your Experience")):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 70px -10px rgba(212, 165, 116, 0.3);
+  background: linear-gradient(135deg, #4a1e4d, var(--text-dark));
+}
+
+.car-gallery button:has(span:contains("Reserve Your Experience")):hover::before {
+  opacity: 1;
+}
+
+.car-gallery button:has(span:contains("Reserve Your Experience")):hover span:last-child {
+  transform: translateX(6px);
+}
+
+/* Arrow animation */
+.car-gallery button:has(span:contains("Reserve Your Experience")) span:last-child {
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Scroll hint animation */
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.car-gallery .inline-flex span.animate-pulse:first-child {
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+.car-gallery .inline-flex span.animate-pulse:last-child {
+  animation: hintPulse 2s ease-in-out infinite 1s;
+}
+
+/* Background texture */
+.car-gallery .absolute.inset-0.z-0 {
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .car-card {
+    border-radius: 20px;
+  }
+  
+  .car-card img {
+    height: 300px;
+  }
+  
+  /* Top navigation arrows */
+  .car-gallery button[aria-label^="Scroll"][class*="absolute"] {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
+  
+  /* Bottom navigation buttons */
+  .car-gallery .flex.justify-center.items-center.gap-6 {
+    gap: 1rem;
+  }
+  
+  .car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll left"],
+  .car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll right"] {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll left"] span:first-child,
+  .car-gallery .flex.justify-center.items-center.gap-6 button[aria-label="Scroll right"] span:last-child {
+    font-size: 1rem;
+  }
+  
+  /* Even smaller dots on mobile */
+  .car-gallery .flex.justify-center.items-center.gap-4 button[aria-label^="Go to"] {
+    width: 5px;
+    height: 2px;
+    margin: 0 1px;
+  }
+  
+  .car-gallery .flex.justify-center.items-center.gap-4 button[aria-label^="Go to"][class*="bg-white"] {
+    width: 20px;
+    height: 2px;
+  }
+  
+  /* CTA button responsive */
+  .car-gallery button:has(span:contains("Reserve Your Experience")) {
+    padding: 0.875rem 2.5rem !important;
+    font-size: 1rem !important;
+    min-width: 260px;
+    border-radius: 18px !important;
+  }
+  
+  .car-gallery button:has(span:contains("Reserve Your Experience")):hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .car-gallery button:has(span:contains("Reserve Your Experience")) {
+    padding: 0.75rem 2rem !important;
+    min-width: 240px;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* High-resolution screens */
+@media (min-width: 1920px) {
+  .car-card img {
+    height: 400px;
+  }
+}
+
+/* Smooth scrolling snap points */
+.gallery-scroll > div {
+  scroll-snap-align: start;
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+  .car-card,
+  .car-card img,
+  .car-gallery button,
+  .gallery-scroll {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-8px) !important;
+  }
+  
+  .car-gallery button:hover {
+    transform: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .car-gallery {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .car-card {
+    break-inside: avoid;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+  }
+  
+  .car-gallery button,
+  .gallery-scroll::before,
+  .gallery-scroll::after {
+    display: none !important;
+  }
 }
