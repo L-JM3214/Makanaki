@@ -1,7 +1,6 @@
-// src/components/VideoSection.jsx
 import React, { useRef, useEffect } from 'react';
 import './VideoSection.css';
-import videoFile from '../assets/Video5.mp4';
+import videoFile from '../assets/Video2.mp4';          // ← changed here
 import fallbackImg from '../assets/Image000.jpg';
 
 const VideoSection = ({
@@ -22,12 +21,13 @@ const VideoSection = ({
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
 
-  // Play/pause video when in viewport (performance)
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          videoRef.current?.play();
+          videoRef.current?.play().catch(() => {
+            // Some browsers may block autoplay — silent fail is ok
+          });
         } else {
           videoRef.current?.pause();
         }
@@ -56,7 +56,6 @@ const VideoSection = ({
       className={`relative overflow-hidden text-white ${fullScreen ? 'min-h-screen' : ''}`}
       style={sectionStyle}
     >
-      {/* Video Background - Video5.mp4 */}
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
@@ -71,14 +70,12 @@ const VideoSection = ({
           Your browser does not support the video tag.
         </video>
 
-        {/* Fallback Image - Image000.jpg */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${fallbackImg})` }}
         />
       </div>
 
-      {/* Overlay */}
       {overlay && (
         <div
           className="absolute inset-0 z-10"
@@ -86,7 +83,6 @@ const VideoSection = ({
         />
       )}
 
-      {/* Content */}
       <div className={`relative z-20 flex items-${verticalAlign} justify-${horizontalAlign} h-full ${containerClass}`}>
         <div className={`w-full md:w-${contentWidth}/12 px-6 md:px-12 text-center`}>
           <a
