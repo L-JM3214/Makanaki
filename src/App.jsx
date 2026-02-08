@@ -37,13 +37,6 @@ function App() {
         />
       </section>
 
-      {/* Spacer / teaser section */}
-      <section className="py-32 px-6 text-center">
-        <h2 className="text-5xl font-bold text-[#ffc091] mb-8">
-          Discover Our Premium Fleet
-        </h2>
-      </section>
-
       {/* ==================================================
           Cinematic full-screen image carousel (events showcase)
           ID: fleet (for navbar navigation)

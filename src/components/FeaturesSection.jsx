@@ -72,8 +72,6 @@ const FeaturesSection = ({
               {showCardTitle && (
                 <div className="card-content">
                   <h3 className="card-title">{card.title}</h3>
-                  {/* You can add description here later if you want */}
-                  {/* <p className="card-description">Short description...</p> */}
                 </div>
               )}
             </div>
