@@ -1,7 +1,7 @@
 // src/App.jsx (COMPLETE UPDATED VERSION)
 import Navbar from './components/Navbar.jsx';
 import HeroSection from './components/HeroSection.jsx';
-import VideoSection from './components/VideoSection.jsx';
+//import VideoSection from './components/VideoSection.jsx';
 import FeaturesSection from './components/FeaturesSection.jsx';
 //import ImageCarouselSection from './components/ImageCarouselSection.jsx';
 import Header09 from './components/Header09.jsx';
@@ -26,7 +26,8 @@ function App() {
           ID: home (for navbar navigation)
       ================================================== */}
       <section id="home">
-        <HeroSection bg={{ type: 'video' }}
+        <HeroSection
+          bg={{ type: 'video' }}
           fallbackImage={fallbackImage}
           overlay={true}
           overlayColor="#000000"
@@ -38,26 +39,8 @@ function App() {
       </section>
 
       {/* ==================================================
-          Cinematic full-screen image carousel (events showcase)
-          ID: fleet (for navbar navigation)
-      ================================================== */}
-      {/*<section id="fleet">
-        <ImageCarouselSection
-          fullScreen={true}
-          fullWidth={true}
-          overlay={true}
-          overlayColor="#000000"
-          overlayOpacity={0.4}
-          bg={{
-            type: 'image',
-            value: fallbackImage
-          }}
-        />
-      </section>*/}
-
-      {/* ==================================================
           Features / Grand Occasions cards
-          ID: services (for navbar navigation)
+          ID: services
       ================================================== */}
       <section id="services">
         <FeaturesSection
@@ -81,42 +64,13 @@ function App() {
         />
       </section>
 
-      {/* Second video section */}
-      <VideoSection
-        fullScreen={false}
-        videoSrc={heroVideo}
-        fallbackImage={fallbackImage}
-        overlayOpacity={0.65}
-        buttonText="Explore Fleet"
-        buttonLink="#fleet"
-        verticalAlign="center"
-        horizontalAlign="center"
-      />
-
       {/* ==================================================
-          Secondary hero / call-to-action section
-          Part of "about" section
+          Secondary hero / split layout section
+          White background – text left, Video2.mp4 right
       ================================================== */}
-      <Header09
-        fullScreen={false}
-        fullWidth={true}
-        paddingTop={6}
-        paddingBottom={5}
-        contentWidth={6}
-        showTitle={true}
-        showSubtitle={true}
-        showText={true}
-        showButtons={true}
-        verticalAlign="center"
-        horizontalAlign="center"
-        bg={{
-          type: 'color',
-          value: '#F1C0E8',
-        }}
-        overlay={true}
-        overlayColor="#000000"
-        overlayOpacity={0.4}
-      />
+      <section id="secondary-hero"> {/* optional id if you want to link to it */}
+        <Header09 />
+      </section>
 
       {/* Car fleet gallery (manual scroll) */}
       <CarGallerySection
@@ -183,7 +137,7 @@ function App() {
 
       {/* ==================================================
           Testimonials carousel
-          ID: testimonials (for navbar navigation)
+          ID: testimonials
       ================================================== */}
       <section id="testimonials">
         <TestimonialsSection
@@ -205,7 +159,7 @@ function App() {
 
       {/* ==================================================
           Article/About section
-          ID: about (for navbar navigation)
+          ID: about
       ================================================== */}
       <section id="about">
         <ArticleSection
@@ -233,7 +187,7 @@ function App() {
 
       {/* ==================================================
           Contact section
-          ID: contact (for navbar navigation)
+          ID: contact
       ================================================== */}
       <section id="contact">
         <ContactSection />

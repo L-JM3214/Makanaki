@@ -1,120 +1,48 @@
 // src/components/Header09.jsx
 import React from 'react';
 import './Header09.css';
+import videoSrc from '../assets/Video2.mp4';
 
-const Header09 = ({
-  fullScreen = false,
-  fullWidth = true,
-  paddingTop = 6,
-  paddingBottom = 5,
-  contentWidth = 6,             // col-md-X (4–12)
-  showTitle = true,
-  showSubtitle = false,
-  showText = true,
-  showButtons = true,
-  verticalAlign = 'center',     // flex-start / center / flex-end
-  horizontalAlign = 'center',   // flex-start / center / flex-end
-  bg = {
-    type: 'image',
-    value: 'https://t4.ftcdn.net/jpg/09/18/16/17/360_F_918161745_jGLg8lWftkKjIMhl8eEjTi8OihEp26Nx.jpg',
-  },
-  fallbackImage = '/images/fallback-hero.jpg',
-  overlay = true,
-  overlayColor = '#000000',
-  overlayOpacity = 0.5,
-}) => {
-  const isVideo = bg.type === 'video';
-  const isImage = bg.type === 'image';
-
-  const sectionStyle = {};
-  if (!fullScreen) {
-    sectionStyle.paddingTop = `${paddingTop}rem`;
-    sectionStyle.paddingBottom = `${paddingBottom}rem`;
-  }
-
-  if (bg.type === 'color') {
-    sectionStyle.backgroundColor = bg.value;
-  } else if (isImage) {
-    sectionStyle.backgroundImage = `url(${bg.value})`;
-    sectionStyle.backgroundSize = 'cover';
-    sectionStyle.backgroundPosition = 'center';
-  }
-
-  const containerClass = fullWidth ? 'container-fluid' : 'container';
-
-  const alignItems = fullScreen ? verticalAlign : 'center';
-  const justifyContent = horizontalAlign;
-
+const Header09 = () => {
   return (
-    <section
-      className={`header09 relative overflow-hidden flex items-${alignItems} justify-${justifyContent} text-center md:text-left ${fullScreen ? 'min-h-screen' : 'min-h-[70vh]'}`}
-      style={sectionStyle}
-    >
-      {/* Video background */}
-      {isVideo && (
-        <div className="absolute inset-0 z-0">
-          <iframe
-            src={`${bg.value}?autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0`}
-            title="Background Video"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            style={{ border: 0 }}
-          />
-          {/* Fallback image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${fallbackImage})` }}
-          />
+    <section className="header09">
+      {/* LEFT — Text Content */}
+      <div className="left-content">
+        <div className="content-inner">
+          <h1 className="gradient-text">Your Dream Ride Awaits!</h1>
+
+          <h2>Premium Chauffeur Service in Nairobi</h2>
+
+          <p>
+            Experience unparalleled luxury and service for your special occasions, corporate events,
+            airport transfers, and scenic tours.
+          </p>
+
+          <div className="buttons">
+            <a href="#book" className="btn-primary">
+              Get in Touch
+            </a>
+            <a href="#fleet" className="btn-secondary">
+              View Fleet
+            </a>
+          </div>
         </div>
-      )}
+      </div>
 
-      {/* Overlay */}
-      {(overlay && bg.type !== 'color') && (
-        <div
-          className="absolute inset-0 z-10"
-          style={{ backgroundColor: overlayColor, opacity: overlayOpacity }}
-        />
-      )}
-
-      {/* Content */}
-      <div className={`${containerClass} relative z-20 px-6 md:px-12`}>
-        <div className={`content-wrap col-12 md:col-md-${contentWidth} mx-auto`}>
-          {showTitle && (
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight" style={{ color: '#000000' }}>
-              <b>Your Dream Ride Awaits!</b>
-            </h1>
-          )}
-
-          {showSubtitle && (
-            <h2 className="text-3xl md:text-5xl mb-6 font-semibold" style={{ color: '#000000' }}>
-              Premium Chauffeur Service in Nairobi
-            </h2>
-          )}
-
-          {showText && (
-            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto md:mx-0 opacity-90" style={{ color: '#000000' }}>
-              Experience unparalleled luxury and service for your special occasions, corporate events, airport transfers, and scenic tours.
-            </p>
-          )}
-
-          {showButtons && (
-            <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
-              <a
-                href="#book"
-                className="bg-[#ffc091] text-[#260a30] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffd9a3] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
-              >
-                Book Your Luxury Car
-              </a>
-              <a
-                href="#fleet"
-                className="border-2 border-[#ffc091] text-[#ffc091] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffc091]/10 transition-all duration-300 hover:border-[#ffd9a3] hover:text-[#ffd9a3]"
-              >
-                View Fleet
-              </a>
-            </div>
-          )}
-        </div>
+      {/* RIGHT — Video */}
+      <div className="right-video">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="video"
+          poster="/images/video-poster.jpg"   // ← optional: fallback image
+        >
+          <source src={videoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </section>
   );
