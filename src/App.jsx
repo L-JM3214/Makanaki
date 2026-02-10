@@ -86,6 +86,34 @@ function App() {
         overlay={false}
       />
 
+      {/* ==================================================
+          Article/About section
+          ID: about
+      ================================================== */}
+      <section id="about">
+        <ArticleSection
+          fullScreen={false}
+          fullWidth={false}
+          paddingTop={5}
+          paddingBottom={5}
+          contentWidth={10}
+          showImage={true}
+          showTitle={true}
+          showSubtitle={true}
+          showText={true}
+          showButtons={true}
+          wrapBgColor="#ffffff"
+          transparentBg={true}
+          bg={{
+            type: 'color',
+            value: '#edefeb',
+          }}
+          overlay={true}
+          overlayColor="#ffffff"
+          overlayOpacity={0.3}
+        />
+      </section>
+
       {/* FAQ section */}
       <FaqSection
         paddingTop={5}
@@ -157,41 +185,15 @@ function App() {
         />
       </section>
 
-      {/* ==================================================
-          Article/About section
-          ID: about
-      ================================================== */}
-      <section id="about">
-        <ArticleSection
-          fullScreen={false}
-          fullWidth={false}
-          paddingTop={5}
-          paddingBottom={5}
-          contentWidth={10}
-          showImage={true}
-          showTitle={true}
-          showSubtitle={true}
-          showText={true}
-          showButtons={true}
-          wrapBgColor="#ffffff"
-          transparentBg={true}
-          bg={{
-            type: 'color',
-            value: '#edefeb',
-          }}
-          overlay={true}
-          overlayColor="#ffffff"
-          overlayOpacity={0.3}
-        />
-      </section>
+
 
       {/* ==================================================
           Contact section
           ID: contact
-      ================================================== */}
+      ================================================== 
       <section id="contact">
         <ContactSection />
-      </section>
+      </section>*/}
 
       {/* Footer */}
       <Footer />

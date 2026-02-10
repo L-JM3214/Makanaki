@@ -1,27 +1,27 @@
 /* src/components/Footer.css */
 
-/* Main footer container */
 .footer-container {
-  background: #0f071a;
-  color: rgba(255, 255, 255, 0.9);
-  border-top: 1px solid rgba(255, 192, 145, 0.15);
+  background: #1a0d20;          /* pure white background */
+  color: #111827;
+  border-top: 1px solid #e5e7eb;
 }
 
-/* Logo + brand name area */
-.brand-section {
+
+/* Brand Section */
+.footer-content .brand-section {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
-.logo-img {
-  height: 3.5rem; /* 56px */
+.footer-content .logo-img {
+  height: 3.5rem;
   width: auto;
   object-fit: contain;
 }
 
-.brand-name {
+.footer-content .brand-name {
   font-family: 'Playfair Display', serif;
   letter-spacing: 0.5px;
   font-size: 2rem;
@@ -29,214 +29,153 @@
   color: #ffc091;
 }
 
-/* Description paragraph */
-.footer-description {
+/* Description */
+.footer-content .footer-description {
   font-size: 0.95rem;
   line-height: 1.6;
-  opacity: 0.8;
+  color: #4b5563;
   max-width: 320px;
 }
 
-/* Column headings */
-.section-heading {
+/* Headings */
+.footer-content .section-heading {
   font-weight: 600;
   margin-bottom: 1.25rem;
-  color: #ffc091;
+  color: #f9f8fa;
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
 }
 
 /* Quick Links */
-.quick-links {
+.footer-content .quick-links {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.quick-link {
-  color: rgba(255, 255, 255, 0.85);
+.footer-content .quick-link {
+  color: #f2f4f7;
   transition: all 0.25s ease;
   font-size: 0.95rem;
   text-decoration: none;
 }
 
-.quick-link:hover {
+.footer-content .quick-link:hover {
   color: #ffc091;
   padding-left: 0.5rem;
 }
 
-/* Social Media Icons */
-.social-icons {
+/* Social Logos (using your images) */
+.footer-content .social-logos {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 
-.social-icon {
-  width: 3rem;
-  height: 3rem;
-  background: rgba(255, 255, 255, 0.1);
+.footer-content .social-logo {
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  font-weight: bold;
 }
 
-.social-icon:hover {
-  transform: scale(1.1);
-  color: white;
+.footer-content .social-logo:hover {
+  transform: scale(1.12) translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.social-icon.facebook:hover {
-  background: #1877f2;
-}
-
-.social-icon.instagram:hover {
-  background: #e4405f;
-}
-
-.social-icon.twitter:hover {
-  background: #1da1f2;
-}
-
-.social-icon.tiktok:hover {
-  background: #000000;
+.footer-content .social-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
 }
 
 /* Contact Info */
-.contact-info {
-  color: rgba(255, 255, 255, 0.8);
+.footer-content .contact-info {
+  color: #f6f8fa;
   font-size: 0.95rem;
 }
 
-.contact-item {
+.footer-content .contact-item {
   margin-bottom: 0.5rem;
 }
 
 /* Bottom Bar */
-.bottom-bar {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.footer-content .bottom-bar {
+  border-top: 1px solid #e5e7eb;
   padding-top: 2rem;
   margin-top: 3rem;
 }
 
-.copyright {
-  color: rgba(255, 255, 255, 0.6);
+.footer-content .copyright {
+  color: #6b7280;
   font-size: 0.875rem;
 }
 
-.legal-links {
+.footer-content .legal-links {
   display: flex;
   gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.legal-link {
-  color: rgba(255, 255, 255, 0.7);
+.footer-content .legal-link {
+  color: #4b5563;
   font-size: 0.875rem;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.legal-link:hover {
+.footer-content .legal-link:hover {
   color: #ffc091;
 }
 
-/* Grid layout adjustments */
+/* Grid layout */
+.footer-content .footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
 @media (min-width: 768px) {
-  .footer-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+  .footer-content .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 }
 
 /* Responsive adjustments */
 @media (max-width: 767px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .footer-container {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-  }
-  
-  .brand-section {
+  .footer-content .brand-section,
+  .footer-content .section-heading,
+  .footer-content .quick-links,
+  .footer-content .social-logos,
+  .footer-content .contact-info {
+    text-align: center;
     justify-content: center;
-    text-align: center;
   }
-  
-  .footer-description {
-    text-align: center;
+
+  .footer-content .footer-description {
     margin: 0 auto;
+    max-width: 100%;
   }
-  
-  .section-heading {
-    text-align: center;
-  }
-  
-  .quick-links {
-    align-items: center;
-  }
-  
-  .social-icons {
+
+  .footer-content .social-logos {
     justify-content: center;
   }
-  
-  .contact-info {
+
+  .footer-content .bottom-bar {
     text-align: center;
   }
-  
-  .bottom-bar {
-    text-align: center;
-  }
-  
-  .legal-links {
+
+  .footer-content .legal-links {
     justify-content: center;
-    flex-wrap: wrap;
   }
-}
-
-/* Animation for social icons */
-@keyframes socialIconHover {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.social-icon:hover {
-  animation: socialIconHover 0.3s ease;
-}
-
-/* Hover effects for links */
-.quick-link::before {
-  content: '→';
-  opacity: 0;
-  margin-right: 0.5rem;
-  transition: opacity 0.3s ease;
-}
-
-.quick-link:hover::before {
-  opacity: 1;
-}
-
-/* Add subtle gradient to bottom border */
-.bottom-bar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #ffc091, transparent);
-  opacity: 0.3;
 }

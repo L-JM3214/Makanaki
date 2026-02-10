@@ -200,3 +200,92 @@
   0%, 100% { box-shadow: 0 6px 20px rgba(255, 192, 145, 0.2); }
   50%      { box-shadow: 0 6px 20px rgba(255, 192, 145, 0.45); }
 }
+/* src/components/HeroSection.css */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Video */
+.hero-video {
+  object-fit: cover;
+}
+
+/* Overlay (dark tint for contrast) */
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(15, 10, 26, 0.45) 0%, rgba(26, 15, 46, 0.65) 100%);
+}
+
+/* Title Gradient + Glow */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #ffc091 0%, #ffd9a3 50%, #e8b923 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(255, 192, 145, 0.4);
+}
+
+/* Animations */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up 1.2s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+
+/* Book Now Button */
+.book-btn {
+  background: #ffc091;
+  color: #1a0d20;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 30px rgba(255, 192, 145, 0.35);
+}
+
+.book-btn:hover {
+  background: #ffd9a3;
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 20px 50px rgba(255, 192, 145, 0.55);
+}
+
+/* Scroll Indicator */
+.animate-bounce-slow {
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 8px rgba(255, 192, 145, 0.6));
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 1.25rem;
+  }
+
+  .book-btn {
+    min-width: 160px;
+    padding: 1rem 1.8rem;
+  }
+}

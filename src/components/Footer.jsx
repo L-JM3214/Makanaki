@@ -1,26 +1,30 @@
 // src/components/Footer.jsx
 import React from 'react';
 import logo from '../assets/logo.png';
-import './Footer.css'; 
+import whatsappLogo from '../assets/lg1.png';
+import gmailLogo from '../assets/lg2.jpg';
+import facebookLogo from '../assets/lg3.png';
+import instagramLogo from '../assets/lg4.jpg';
+import linkedinLogo from '../assets/lg5.png';
+import xLogo from '../assets/lg6.png';
+import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="footer-container">
-      <div className="container mx-auto px-6 lg:px-8">
+      <div className="footer-content container mx-auto px-6 lg:px-8">
         <div className="footer-grid grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
           {/* Brand + Description */}
-          <div>
+          <div className="footer-brand-column">
             <div className="brand-section">
               <img 
                 src={logo} 
                 alt="Makanaki Travels Logo" 
                 className="logo-img" 
               />
-              <span className="brand-name">
-                Makanaki
-              </span>
+              <span className="brand-name">Makanaki</span>
             </div>
             <p className="footer-description">
               Premium chauffeur-driven luxury vehicles in Nairobi. 
@@ -29,10 +33,8 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="section-heading">
-              Quick Links
-            </h4>
+          <div className="footer-links-column">
+            <h4 className="section-heading">Quick Links</h4>
             <div className="quick-links">
               {['Home', 'Our Fleet', 'Services', 'About Us', 'FAQs'].map((item) => (
                 <a
@@ -47,33 +49,36 @@ const Footer = () => {
           </div>
 
           {/* Social Media + Contact */}
-          <div>
-            <h4 className="section-heading">
-              Follow Us
-            </h4>
-            <div className="social-icons">
-              {[
-                { name: 'Facebook', icon: 'F', className: 'facebook' },
-                { name: 'Instagram', icon: 'I', className: 'instagram' },
-                { name: 'Twitter', icon: 'T', className: 'twitter' },
-                { name: 'TikTok', icon: 'Tk', className: 'tiktok' }
-              ].map((social) => (
-                <a
-                  key={social.name}
-                  href={`https://${social.name.toLowerCase()}.com/makanakitravels`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`social-icon ${social.className}`}
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+          <div className="footer-contact-column">
+            <h4 className="section-heading">Follow Us</h4>
+            <div className="social-logos">
+              <a href="https://wa.me/254712345678" target="_blank" rel="noopener noreferrer" className="social-logo whatsapp" title="WhatsApp">
+                <img src={whatsappLogo} alt="WhatsApp" />
+              </a>
+
+              <a href="mailto:info@makanakitravels.com" className="social-logo gmail" title="Email">
+                <img src={gmailLogo} alt="Email" />
+              </a>
+
+              <a href="https://facebook.com/makanakitravels" target="_blank" rel="noopener noreferrer" className="social-logo facebook" title="Facebook">
+                <img src={facebookLogo} alt="Facebook" />
+              </a>
+
+              <a href="https://instagram.com/makanakitravels" target="_blank" rel="noopener noreferrer" className="social-logo instagram" title="Instagram">
+                <img src={instagramLogo} alt="Instagram" />
+              </a>
+
+              <a href="https://linkedin.com/company/makanakitravels" target="_blank" rel="noopener noreferrer" className="social-logo linkedin" title="LinkedIn">
+                <img src={linkedinLogo} alt="LinkedIn" />
+              </a>
+
+              <a href="https://x.com/makanakitravels" target="_blank" rel="noopener noreferrer" className="social-logo x-twitter" title="X (Twitter)">
+                <img src={xLogo} alt="X (Twitter)" />
+              </a>
             </div>
+
             <div className="contact-info">
-              <h5 className="section-heading text-lg mb-3">
-                Contact
-              </h5>
+              <h5 className="section-heading">Contact</h5>
               <p className="contact-item">+254 712 345 678</p>
               <p className="contact-item">info@makanakitravels.com</p>
             </div>
@@ -87,15 +92,9 @@ const Footer = () => {
               © {currentYear} Makanaki Travels. All rights reserved.
             </p>
             <div className="legal-links">
-              <a href="#privacy" className="legal-link">
-                Privacy Policy
-              </a>
-              <a href="#terms" className="legal-link">
-                Terms of Service
-              </a>
-              <a href="#cookies" className="legal-link">
-                Cookie Policy
-              </a>
+              <a href="#privacy" className="legal-link">Privacy Policy</a>
+              <a href="#terms" className="legal-link">Terms of Service</a>
+              <a href="#cookies" className="legal-link">Cookie Policy</a>
             </div>
           </div>
         </div>

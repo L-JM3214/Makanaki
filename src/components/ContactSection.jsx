@@ -2,6 +2,14 @@
 import React, { useState } from 'react';
 import './ContactSection.css';
 
+// Import your logo images
+import whatsappLogo from '../assets/lg1.png';
+import gmailLogo from '../assets/lg2.jpg';
+import facebookLogo from '../assets/lg3.png';
+import instagramLogo from '../assets/lg4.jpg';
+import linkedinLogo from '../assets/lg5.png';
+import xLogo from '../assets/lg6.png';
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -16,7 +24,9 @@ const ContactSection = () => {
   const whatsappMessage = 'Hello Makanaki Travels! I would like to book a luxury car...';
   const emailAddress = 'info@makanakitravels.com';
   const facebookUrl = 'https://facebook.com/makanakitravels';
-  const tiktokUrl = 'https://tiktok.com/@makanakitravels';
+  const instagramUrl = 'https://instagram.com/makanakitravels';
+  const linkedinUrl = 'https://linkedin.com/company/makanakitravels';
+  const xUrl = 'https://x.com/makanakitravels';
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -50,42 +60,41 @@ const ContactSection = () => {
           </p>
         </div>
 
-        {/* Contact Buttons */}
-        <div className="contact-buttons">
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn whatsapp">
-            <svg className="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12c0 2.14.7 4.11 1.88 5.71L2 22l4.29-1.88C7.89 21.3 9.86 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm3.78 14.38c-.25.7-.92 1.24-1.62 1.38-.7.14-1.43.04-2.05-.3-.62-.34-1.18-.83-1.65-1.45-.47-.62-.82-1.34-.99-2.11-.17-.77-.12-1.57.15-2.32.27-.75.74-1.42 1.35-1.94.61-.52 1.36-.87 2.15-.99.79-.12 1.58.01 2.3.37.72.36 1.35.88 1.84 1.54.49.66.84 1.43.99 2.23.15.8.05 1.61-.29 2.33z"/>
-            </svg>
-            WhatsApp Us
+        {/* Social Logo Buttons (icons only) */}
+        <div className="social-logos">
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="logo-btn whatsapp" title="WhatsApp">
+            <img src={whatsappLogo} alt="WhatsApp" />
           </a>
 
-          <button onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })} className="btn message">
-            <svg className="icon" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-            Send Message
+          <a href={`mailto:${emailAddress}?subject=Inquiry from Website`} className="logo-btn gmail" title="Email">
+            <img src={gmailLogo} alt="Email" />
+          </a>
+
+          <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="logo-btn facebook" title="Facebook">
+            <img src={facebookLogo} alt="Facebook" />
+          </a>
+
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="logo-btn instagram" title="Instagram">
+            <img src={instagramLogo} alt="Instagram" />
+          </a>
+
+          <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="logo-btn linkedin" title="LinkedIn">
+            <img src={linkedinLogo} alt="LinkedIn" />
+          </a>
+
+          <a href={xUrl} target="_blank" rel="noopener noreferrer" className="logo-btn x-twitter" title="X (Twitter)">
+            <img src={xLogo} alt="X (Twitter)" />
+          </a>
+        </div>
+
+        {/* Send Message Button (text button kept for form) */}
+        <div className="send-message-wrapper">
+          <button
+            onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+            className="send-message-btn"
+          >
+            Send Us a Message
           </button>
-
-          <a href={`mailto:${emailAddress}?subject=Inquiry from Website`} className="btn email">
-            <svg className="icon" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-            Send Email
-          </a>
-
-          <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="btn facebook">
-            <svg className="icon" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12v9.294h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
-            </svg>
-            Facebook
-          </a>
-
-          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" className="btn tiktok">
-            <svg className="icon" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.33 6.33 0 0 0-1-.05A6.34 6.34 0 0 0 5 20.1a6.34 6.34 0 0 0 11.14-4.29v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.32-.27z"/>
-            </svg>
-            TikTok
-          </a>
         </div>
 
         {/* Contact Form */}
