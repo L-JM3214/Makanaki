@@ -1,9 +1,7 @@
 // src/components/ArticleSection.jsx
 import React from 'react';
 import './ArticleSection.css';
-import Video9 from '../assets/Video9.mp4';
-import fallbackImage from '../assets/image00.jpg';
-import defaultImage from '../assets/image0.jpg';
+import defaultImage from '../assets/Image0.jpg'; //
 
 const ArticleSection = ({
   fullScreen = false,
