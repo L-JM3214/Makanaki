@@ -69,26 +69,67 @@
   font-size: 1.125rem;
 }
 
-.article-section-content a[href="#contact"] {
-  background: #ffc091;
+/* Updated and scoped booking button styles */
+.article-section-content .booking-button {
+  background: linear-gradient(135deg, #ffc091 0%, #ffd9a3 100%);
   color: #1a0d20;
-  padding: 1rem 2.5rem;
+  padding: 1.25rem 3rem;
   border-radius: 9999px;
   font-weight: 700;
   font-size: 1.125rem;
-  transition: all 0.35s ease;
-  box-shadow: 0 8px 25px rgba(255, 192, 145, 0.3);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 12px 30px rgba(255, 192, 145, 0.4);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 2px solid transparent;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  min-width: 220px;
+  text-align: center;
 }
 
-.article-section-content a[href="#contact"]:hover {
-  background: #ffd9a3;
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 16px 40px rgba(255, 192, 145, 0.45);
+/* Pseudo-element for shine effect */
+.article-section-content .booking-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
 }
 
-/* Responsive – also scoped */
+.article-section-content .booking-button:hover {
+  background: linear-gradient(135deg, #ffd9a3 0%, #ffe7c4 100%);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 20px 45px rgba(255, 192, 145, 0.6);
+  border-color: #ffc091;
+}
+
+.article-section-content .booking-button:hover::before {
+  left: 100%;
+}
+
+.article-section-content .booking-button:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(255, 192, 145, 0.5);
+}
+
+/* Optional icon styling */
+.article-section-content .booking-button .icon {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.article-section-content .booking-button:hover .icon {
+  transform: translateX(4px);
+}
+
+/* Center button on mobile */
 @media (max-width: 767px) {
   .article-section-content .card-title {
     text-align: center;
@@ -108,4 +149,31 @@
   .article-section-content .card-content {
     padding: 1.5rem;
   }
+
+  .article-section-content .booking-button {
+    width: 100%;
+    max-width: 300px;
+    padding: 1.1rem 2rem;
+    font-size: 1rem;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .article-section-content .booking-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .article-section-content .booking-button {
+    padding: 1.15rem 2.5rem;
+    font-size: 1.05rem;
+  }
+}
+
+.article-section-content a[href="#contact"] {
+  all: unset;
 }

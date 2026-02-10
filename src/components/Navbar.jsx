@@ -128,12 +128,14 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button
-              onClick={(e) => scrollToSection('contact', e)}
+            <a
+              href="/booking-form.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="book-now-btn bg-[#ffc091] text-[#260a30] px-8 py-3 rounded-full font-bold hover:bg-[#ffd9a3] transition-all duration-300 hover:scale-105 shadow-lg"
             >
               Book Now
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu - Hover Trigger Area */}
@@ -206,12 +208,14 @@ const Navbar = () => {
                     {link.name}
                   </a>
                 ))}
-                <button
-                  onClick={(e) => scrollToSection('contact', e)}
+                <a
+                  href="/booking-form.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="book-now-btn bg-[#ffc091] text-[#260a30] px-8 py-3 rounded-full font-bold hover:bg-[#ffd9a3] transition text-center mt-4 hover:scale-105"
                 >
                   Book Now
-                </button>
+                </a>
               </div>
             </div>
           </div>

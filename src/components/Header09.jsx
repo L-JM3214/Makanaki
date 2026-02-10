@@ -19,7 +19,7 @@ const Header09 = () => {
           </p>
 
           <div className="buttons">
-            <a href="#book" className="btn-primary">
+            <a href="/booking-form.html" target="_blank" rel="noopener noreferrer" className="btn-primary">
               Get in Touch
             </a>
             <a href="#fleet" className="btn-secondary">

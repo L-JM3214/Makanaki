@@ -104,7 +104,7 @@ const HeroSection = ({
 
           {showSubtitle && (
             <h2 className="text-2xl md:text-4xl lg:text-5xl mb-8 font-light text-white/90 animate-fade-up delay-100">
-              Exectuive Car Hire & Chauffer 
+              Executive Car Hire & Chauffeur 
             </h2>
           )}
 
@@ -117,7 +117,9 @@ const HeroSection = ({
           {showButtons && (
             <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start animate-fade-up delay-300 mb-4 md:mb-8">
               <a
-                href="#contact"
+                href="/booking-form.html"          // ← LINK TO YOUR FORM
+                target="_blank"                    // ← opens in new tab
+                rel="noopener noreferrer"
                 className="px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[180px] md:min-w-[220px] bg-[#1e3a8a]/30 backdrop-blur-md border border-white/30 text-white hover:bg-[#1e3a8a]/50 hover:border-white/50"
               >
                 Book Now
@@ -127,7 +129,7 @@ const HeroSection = ({
         </div>
       </div>
 
-      {/* Scroll Indicator - just mouse icon, very low bottom center, over video, no text */}
+      {/* Scroll Indicator */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30">
         <svg
           className="w-7 h-7 md:w-8 md:h-8 text-[#1e3a8a]/30 animate-bounce-slow drop-shadow-glow"
@@ -136,9 +138,7 @@ const HeroSection = ({
           viewBox="0 0 24 24"
           strokeWidth="1.2"
         >
-          {/* Mouse body - thin outline */}
           <rect x="6" y="2" width="12" height="18" rx="6" fill="none" stroke="currentColor" />
-          {/* Scroll wheel */}
           <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
         </svg>
       </div>

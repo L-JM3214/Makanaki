@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Your Luxury Ride - Makanaki Travels</title>
+  <style>
+    :root {
+      --primary: #ffc091;
+      --primary-dark: #e8a66d;
+      --dark: #1a0d20;
+      --gray: #4b5563;
+      --light: #f9fafb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--dark);
+      color: white;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 192, 145, 0.15);
+      border-radius: 1.25rem;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      color: var(--primary);
+      font-size: 2.4rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #d1d5db;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 192, 145, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      font-size: 1.05rem;
+      transition: all 0.2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 192, 145, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    /* Vehicle size dropdown */
+    .vehicle-size {
+      margin: 1.5rem 0;
+    }
+
+    /* Brand multi-select (chips/tags style) */
+    .brand-selection {
+      margin: 1.5rem 0;
+    }
+
+    .brand-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .brand-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 192, 145, 0.12);
+      color: #ffc091;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 192, 145, 0.3);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .brand-chip.selected {
+      background: #ffc091;
+      color: #1a0d20;
+      border-color: #ffc091;
+    }
+
+    .brand-chip .remove {
+      font-weight: bold;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* Usage checkboxes */
+    .usage-options {
+      margin: 1.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .usage-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .usage-checkbox input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #ffc091;
+    }
+
+    /* Other specification */
+    .other-spec {
+      margin-top: 1rem;
+    }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #ffc091, #ffdbad);
+      color: #1a0d20;
+      border: none;
+      padding: 1.1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      margin-top: 2.5rem;
+      transition: all 0.35s;
+      box-shadow: 0 10px 30px rgba(255, 192, 145, 0.35);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(255, 192, 145, 0.55);
+    }
+
+    .success-message {
+      text-align: center;
+      color: #34d399;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 2rem 1.25rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-content">
+    <div class="container">
+      <h1>Book Your Luxury Ride</h1>
+      <p class="subtitle">Please fill in your details — we'll get back to you shortly.</p>
+
+      <form id="bookingForm">
+        <!-- Contact Details -->
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required placeholder="John Doe" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+254 7XX XXX XXX" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com" />
+        </div>
+
+        <!-- Vehicle Size -->
+        <div class="form-group vehicle-size">
+          <label for="vehicleSize">Preferred Vehicle Size *</label>
+          <select id="vehicleSize" name="vehicleSize" required>
+            <option value="">Select size</option>
+            <option value="Compact">Compact</option>
+            <option value="Saloon">Saloon</option>
+            <option value="CUV">CUV</option>
+            <option value="SUV">SUV</option>
+            <option value="Minivan">Minivan</option>
+            <option value="Executive">Executive</option>
+            <option value="Van">Van</option>
+          </select>
+        </div>
+
+        <!-- Multiple Brand Selection (chips) -->
+        <div class="form-group brand-selection">
+          <label>Preferred Vehicle Brands (select multiple)</label>
+          <div class="brand-options" id="brandOptions">
+            <!-- Japanese brands – very common in Kenya (especially Toyota) -->
+            <div class="brand-chip" data-value="Toyota">Toyota</div>
+            <div class="brand-chip" data-value="Nissan">Nissan</div>
+            <div class="brand-chip" data-value="Honda">Honda</div>
+            <div class="brand-chip" data-value="Mazda">Mazda</div>
+            <div class="brand-chip" data-value="Subaru">Subaru</div>
+            <div class="brand-chip" data-value="Mitsubishi">Mitsubishi</div>
+            <div class="brand-chip" data-value="Suzuki">Suzuki</div>
+            <div class="brand-chip" data-value="Isuzu">Isuzu</div>
+
+            <!-- Premium Japanese -->
+            <div class="brand-chip" data-value="Lexus">Lexus</div>
+            <div class="brand-chip" data-value="Infiniti">Infiniti</div>
+
+            <!-- German brands – common in executive & luxury segment -->
+            <div class="brand-chip" data-value="Mercedes-Benz">Mercedes-Benz</div>
+            <div class="brand-chip" data-value="BMW">BMW</div>
+            <div class="brand-chip" data-value="Audi">Audi</div>
+            <div class="brand-chip" data-value="Volkswagen">Volkswagen</div>
+
+            <!-- High-end German -->
+            <div class="brand-chip" data-value="Porsche">Porsche</div>
+            <div class="brand-chip" data-value="Mercedes-Maybach">Mercedes-Maybach</div>
+
+            <!-- British brands – mostly SUVs & luxury -->
+            <div class="brand-chip" data-value="Land Rover">Land Rover</div>
+            <div class="brand-chip" data-value="Range Rover">Range Rover</div>
+            <div class="brand-chip" data-value="Jaguar">Jaguar</div>
+
+            <!-- Luxury / ultra-premium (weddings, VIP, executive) -->
+            <div class="brand-chip" data-value="Bentley">Bentley</div>
+            <div class="brand-chip" data-value="Rolls-Royce">Rolls-Royce</div>
+            <div class="brand-chip" data-value="Maserati">Maserati</div>
+
+            <!-- American brands – growing presence -->
+            <div class="brand-chip" data-value="Ford">Ford</div>
+            <div class="brand-chip" data-value="Chevrolet">Chevrolet</div>
+            <div class="brand-chip" data-value="Jeep">Jeep</div>
+            <div class="brand-chip" data-value="Tesla">Tesla</div>
+
+            <!-- Korean brands – very popular & affordable -->
+            <div class="brand-chip" data-value="Hyundai">Hyundai</div>
+            <div class="brand-chip" data-value="Kia">Kia</div>
+            <div class="brand-chip" data-value="Genesis">Genesis</div>
+
+            <!-- Chinese brands – rapidly increasing in Kenya -->
+            <div class="brand-chip" data-value="Chery">Chery</div>
+            <div class="brand-chip" data-value="GWM (Great Wall)">GWM (Great Wall)</div>
+            <div class="brand-chip" data-value="Geely">Geely</div>
+            <div class="brand-chip" data-value="Haval">Haval</div>
+            <div class="brand-chip" data-value="MG">MG</div>
+            <div class="brand-chip" data-value="BYD">BYD</div>
+            <div class="brand-chip" data-value="Changan">Changan</div>
+
+            <!-- Other brands sometimes seen -->
+            <div class="brand-chip" data-value="Peugeot">Peugeot</div>
+            <div class="brand-chip" data-value="Citroën">Citroën</div>
+            <div class="brand-chip" data-value="Renault">Renault</div>
+            <div class="brand-chip" data-value="Volvo">Volvo</div>
+          </div>
+          <input type="hidden" name="brands" id="selectedBrands" />
+        </div>
+
+        <!-- Additional Specifications -->
+        <div class="form-group">
+          <label for="specifications">Any other specifications / preferences?</label>
+          <textarea id="specifications" name="specifications" rows="4" placeholder="e.g. black interior, child seats, Wi-Fi, specific model..."></textarea>
+        </div>
+
+        <!-- Usage / Purpose -->
+        <div class="form-group">
+          <label>Purpose of Hire (select all that apply)</label>
+          <div class="usage-options">
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Self Drive" /> Self Drive
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Chauffeur Driven" /> Chauffeur Driven
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Airport Transfer" /> Airport Transfer
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Meet & Greet" /> Meet & Greet
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Wedding" /> Wedding
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Weekend Getaway" /> Weekend Getaway
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Out of Town" /> Out of Town
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Corporate Event" /> Corporate Event
+            </label>
+            <label class="usage-checkbox">
+              <input type="checkbox" name="purpose" value="Other" id="otherPurposeCheck" /> Other
+            </label>
+          </div>
+
+          <div class="other-spec" id="otherPurposeField" style="display:none; margin-top:1rem;">
+            <input type="text" name="otherPurpose" placeholder="Please specify..." />
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Booking Inquiry</button>
+
+        <div id="successMessage" class="success-message">
+          Thank you! Your inquiry has been sent. We'll contact you soon.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Brand multi-select logic
+    const brandChips = document.querySelectorAll('.brand-chip');
+    const selectedBrandsInput = document.getElementById('selectedBrands');
+
+    brandChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('selected');
+        updateSelectedBrands();
+      });
+    });
+
+    function updateSelectedBrands() {
+      const selected = Array.from(document.querySelectorAll('.brand-chip.selected'))
+        .map(chip => chip.dataset.value);
+      selectedBrandsInput.value = selected.join(', ');
+    }
+
+    // Show/hide "Other" purpose field
+    document.getElementById('otherPurposeCheck').addEventListener('change', (e) => {
+      document.getElementById('otherPurposeField').style.display = e.target.checked ? 'block' : 'none';
+    });
+
+    // WhatsApp Form Submission
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Get all form data
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      
+      // Get all checked purposes
+      const purposeCheckboxes = document.querySelectorAll('input[name="purpose"]:checked');
+      const purposes = Array.from(purposeCheckboxes).map(cb => cb.value);
+      
+      // Format WhatsApp message
+      const message = `
+*NEW BOOKING INQUIRY - MAKANAKI TRAVELS* 📞
+
+*👤 Contact Details:*
+• Name: ${data.name || 'N/A'}
+• Phone: ${data.phone || 'N/A'}
+• Email: ${data.email || 'N/A'}
+
+*🚗 Vehicle Preferences:*
+• Preferred Size: ${data.vehicleSize || 'N/A'}
+• Preferred Brands: ${data.brands || 'None selected'}
+• Other Specifications: ${data.specifications || 'None'}
+
+*🎯 Purpose of Hire:*
+• ${purposes.length > 0 ? purposes.join(', ') : 'N/A'}
+${data.otherPurpose ? `• Other: ${data.otherPurpose}` : ''}
+
+*📅 Submitted on:* ${new Date().toLocaleString()}
+
+_This inquiry was submitted via Makanaki Travels website_
+      `.trim();
+
+      // WhatsApp number - REPLACE THIS WITH YOUR ACTUAL NUMBER
+      const whatsappNumber = '254795621529';  // ← Change to your WhatsApp number (without +)
+      
+      // Create WhatsApp URL
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      
+      // Open WhatsApp in new tab
+      window.open(url, '_blank');
+      
+      // Show success message
+      document.getElementById('successMessage').style.display = 'block';
+      
+      // Reset form
+      e.target.reset();
+      document.querySelectorAll('.brand-chip').forEach(c => c.classList.remove('selected'));
+      document.getElementById('selectedBrands').value = '';
+      document.getElementById('otherPurposeField').style.display = 'none';
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        document.getElementById('successMessage').style.display = 'none';
+      }, 5000);
+    });
+
+    // Optional: Add phone number validation for Kenyan format
+    document.getElementById('phone').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.startsWith('254') && value.length === 12) {
+        e.target.value = `+${value}`;
+      } else if (value.startsWith('7') && value.length === 9) {
+        e.target.value = `+254${value}`;
+      } else if (value.startsWith('1') && value.length === 10) {
+        e.target.value = `+${value}`;
+      }
+    });
+  </script>
+</body>
+</html>

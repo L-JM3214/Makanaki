@@ -104,12 +104,15 @@ const ArticleSection = ({
                   </div>
 
                   {showButtons && (
-                    <div className="mt-12 text-center md:text-left">
+                    <div className="mt-12 text-center md:text-left booking-button-container">
                       <a
-                        href="#contact"
-                        className="inline-block bg-[#ffc091] text-[#1a0d20] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ffd9a3] transition-all duration-300 hover:scale-105 shadow-lg"
+                        href="/booking-form.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="booking-button"
                       >
                         Book Your Ride Now
+                        <span className="icon">→</span>
                       </a>
                     </div>
                   )}

@@ -68,7 +68,7 @@ function App() {
           Secondary hero / split layout section
           White background – text left, Video2.mp4 right
       ================================================== */}
-      <section id="secondary-hero"> {/* optional id if you want to link to it */}
+      <section id="secondary-hero"> 
         <Header09 />
       </section>
 
