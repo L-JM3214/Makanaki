@@ -2,24 +2,258 @@
 
 .contact-section {
   background: linear-gradient(135deg, #0f071a 0%, #1a0f2e 100%);
+  color: #ffffff;
+  padding: 6rem 1rem;
 }
 
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Title */
+.title-wrapper {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffc091;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .main-title {
+    font-size: 4.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  max-width: 42rem;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* Buttons row */
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.btn.whatsapp {
+  background-color: #25D366;
+  color: white;
+}
+
+.btn.whatsapp:hover {
+  background-color: #20b858;
+}
+
+.btn.message {
+  background-color: #ffc091;
+  color: #1a0d20;
+}
+
+.btn.message:hover {
+  background-color: #ffd9a3;
+}
+
+.btn.email {
+  background-color: #4b5563;
+  color: white;
+}
+
+.btn.email:hover {
+  background-color: #374151;
+}
+
+.btn.facebook {
+  background-color: #1877F2;
+  color: white;
+}
+
+.btn.facebook:hover {
+  background-color: #166fe5;
+}
+
+.btn.tiktok {
+  background-color: #000000;
+  color: white;
+}
+
+.btn.tiktok:hover {
+  background-color: #111111;
+}
+
+.icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* Form */
 .contact-form {
-  background: rgba(38, 10, 48, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 192, 145, 0.2);
+  background: rgba(38, 10, 48, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 192, 145, 0.25);
   border-radius: 1.5rem;
   padding: 2.5rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  margin-bottom: 4rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .contact-form {
-    padding: 1.5rem;
+.form-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #ffc091;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.contact-form-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
   }
-  
-  .contact-form h3 {
-    font-size: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input,
+.form-textarea {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #4b5563;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #ffc091;
+  box-shadow: 0 0 0 3px rgba(255, 192, 145, 0.2);
+}
+
+.form-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-submit-wrapper {
+  text-align: center;
+}
+
+.submit-btn {
+  background: #ffc091;
+  color: #1a0d20;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #ffd9a3;
+  transform: translateY(-3px);
+}
+
+.form-status {
+  text-align: center;
+  color: #ffc091;
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+
+/* Info cards */
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .contact-info-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  border: 1px solid rgba(255, 192, 145, 0.15);
+}
+
+.info-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffc091;
+}
+
+.info-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.info-text {
+  color: #d1d5db;
+}
+
+.info-subtext {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }

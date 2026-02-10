@@ -1,12 +1,11 @@
 // src/components/TestimonialsSection.jsx
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './TestimonialsSection.css';
 
 const TestimonialsSection = ({
   fullWidth = false,
   paddingTop = 6,
   paddingBottom = 6,
-  columns = 3,                  // 12=1, 6=2, 4=3, 3=4 columns on lg
   showMainTitle = true,
   showMainSubtitle = true,
   showTitle = true,
@@ -15,150 +14,130 @@ const TestimonialsSection = ({
     type: 'color',
     value: '#ffffff',
   },
-  overlay = false,
-  overlayColor = '#ffffff',
-  overlayOpacity = 0.5,
 }) => {
   const scrollRef = useRef(null);
-
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -350, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 350, behavior: 'smooth' });
-    }
-  };
+  const intervalRef = useRef(null);
 
   const sectionStyle = {
     paddingTop: `${paddingTop}rem`,
     paddingBottom: `${paddingBottom}rem`,
+    backgroundColor: bg.type === 'color' ? bg.value : undefined,
   };
 
-  if (bg.type === 'color') {
-    sectionStyle.backgroundColor = bg.value;
-  } else if (bg.type === 'image') {
-    sectionStyle.backgroundImage = `url(${bg.value})`;
-    sectionStyle.backgroundSize = 'cover';
-    sectionStyle.backgroundPosition = 'center';
-  }
-
-  const overlayStyle = overlay && bg.type !== 'color' ? {
-    backgroundColor: overlayColor,
-    opacity: overlayOpacity,
-  } : {};
-
-  // Extended testimonials array (add more as needed)
+  // More realistic / professional-looking images
   const testimonials = [
     {
-      text: "Makanaki Travels provided an exceptional experience for our wedding. The car was immaculate, and the service was top-notch!",
+      text: "Makanaki Travels made our wedding day perfect. The chauffeur was punctual, polite, and the car looked brand new inside and out.",
       name: "Amina Hassan",
-      img: "https://r.mobirisesite.com/2279897/assets/images/photo-1598992616139-5ed3d0fa4eeb.jpeg",
+      img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop&q=80",
     },
     {
-      text: "The most reliable and luxurious car hire in Nairobi. Punctual, professional, and the fleet is simply stunning.",
+      text: "Very professional service for airport pickup. Driver waited with a name sign and helped with luggage. Will definitely use again.",
       name: "David Ochieng",
-      img: "https://r.mobirisesite.com/2279897/assets/images/photo-1694026307715-0d3709e69adf.jpeg",
+      img: "https://images.unsplash.com/photo-1557862921-37829c7765e3?w=800&auto=format&fit=crop&q=80",
     },
     {
-      text: "Seamless airport transfers every time. Makanaki Travels made our holiday travel completely stress-free. Highly recommend!",
+      text: "The best chauffeur experience in Nairobi. Comfortable ride, clean car, and very courteous driver. 10/10 service.",
       name: "Priya Sharma",
-      img: "https://r.mobirisesite.com/2279897/assets/images/photo-1568530134868-5d89f49d5a72.jpeg",
+      img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&auto=format&fit=crop&q=80",
     },
     {
-      text: "Outstanding service for my corporate event. The driver was courteous, and the vehicle was spotless. Will definitely use again!",
+      text: "Used for corporate transfers multiple times. Always on time, well-dressed drivers, and luxury vehicles. Highly recommended.",
       name: "James Mwangi",
-      img: "https://img.freepik.com/free-photo/handsome-bearded-smiling-businessman-working-his-laptopand-speaking-mobile-phone-backseat-car_496169-578.jpg", // example from search
+      img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=80",
     },
     {
-      text: "Perfect scenic tour experience. Comfortable ride, knowledgeable driver, and breathtaking views. Thank you Makanaki!",
+      text: "Took my family for a scenic tour to Naivasha. Driver was very knowledgeable about the route and made the trip memorable.",
       name: "Sarah Kimani",
-      img: "https://thumbs.dreamstime.com/b/portrait-smile-black-woman-living-room-relax-peace-calm-weekend-break-home-confidence-comfort-african-person-sofa-421437960.jpg",
+      img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
     },
     {
-      text: "Reliable and elegant transport for my business meetings. Always on time and professional. Highly satisfied customer.",
+      text: "Reliable and elegant transport for business meetings. Professional drivers and spotless vehicles every time.",
       name: "Michael Kamau",
-      img: "https://thumbs.dreamstime.com/b/portrait-male-african-american-professional-possibly-business-executive-corporate-ceo-finance-attorney-lawyer-sales-stylish-155546880.jpg",
+      img: "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&auto=format&fit=crop&q=80",
     },
   ];
 
-  return (
-    <section id="testimonials" className="people05 relative overflow-hidden" style={sectionStyle}>
-      {/* Overlay */}
-      {overlay && bg.type !== 'color' && (
-        <div className="absolute inset-0 z-10" style={overlayStyle} />
-      )}
+  // Auto-scroll logic
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
 
-      <div className={`${fullWidth ? 'container-fluid' : 'container'} relative z-20`}>
+    const scrollStep = () => {
+      if (scrollContainer) {
+        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        const currentScroll = scrollContainer.scrollLeft;
+
+        // If near the end, jump back to start (infinite loop effect)
+        if (currentScroll >= maxScroll - 10) {
+          scrollContainer.scrollTo({ left: 0, behavior: 'instant' });
+        } else {
+          scrollContainer.scrollBy({ left: 380, behavior: 'smooth' });
+        }
+      }
+    };
+
+    // Start auto-scroll every 5 seconds
+    intervalRef.current = setInterval(scrollStep, 5000);
+
+    // Cleanup on unmount
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <section id="testimonials" className="testimonials-section" style={sectionStyle}>
+      <div className={`${fullWidth ? 'container-fluid' : 'container'} px-4 md:px-6 lg:px-8`}>
         {/* Header */}
         {(showMainTitle || showMainSubtitle) && (
-          <div className="row justify-content-center mb-10">
-            <div className="col-12 text-center">
-              {showMainTitle && (
-                <h3 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#000000' }}>
-                  <b>Voices</b>
-                </h3>
-              )}
-              {showMainSubtitle && (
-                <h5 className="text-lg md:text-xl opacity-80" style={{ color: '#000000' }}>
-                  What our valued clients say about Makanaki Travels
-                </h5>
-              )}
-            </div>
+          <div className="text-center mb-12 md:mb-16">
+            {showMainTitle && (
+              <h2 className="section-title">What Our Clients Say</h2>
+            )}
+            {showMainSubtitle && (
+              <p className="section-subtitle">
+                Real experiences from people who trusted Makanaki Travels
+              </p>
+            )}
           </div>
         )}
 
-        {/* Scrollable Testimonials */}
+        {/* Testimonials Carousel – no arrows, auto-scrolls */}
         <div className="relative">
-          <div ref={scrollRef} className="testimonials-scroll flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
+          <div
+            ref={scrollRef}
+            className="testimonials-scroll flex gap-6 md:gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide"
+          >
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`item flex-shrink-0 w-full md:w-1/${columns} snap-start`}
+                className="testimonial-card flex-shrink-0 w-full md:w-1/3 snap-start"
               >
-                <div className="item-wrapper bg-white rounded-xl shadow-lg p-8 text-center h-full flex flex-col justify-between">
-                  <p className="card-text text-lg leading-relaxed mb-6" style={{ color: '#000000' }}>
-                    "{testimonial.text}"
-                  </p>
-
+                <div className="card-inner">
                   {showImage && (
-                    <div className="img-wrapper mb-4 flex justify-center">
+                    <div className="avatar-wrapper">
                       <img
                         src={testimonial.img}
                         alt={testimonial.name}
-                        className="w-20 h-20 rounded-full object-cover border-4 border-[#ffc091]/30 shadow-md"
+                        className="avatar"
                       />
                     </div>
                   )}
 
+                  <p className="testimonial-text">
+                    "{testimonial.text}"
+                  </p>
+
                   {showTitle && (
-                    <h5 className="card-title text-xl font-semibold" style={{ color: '#000000' }}>
-                      <b>{testimonial.name}</b>
-                    </h5>
+                    <h3 className="testimonial-name">{testimonial.name}</h3>
                   )}
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Navigation Arrows */}
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-4 rounded-full shadow-lg hover:bg-[#ffc091]/20 transition z-30"
-            aria-label="Scroll left"
-          >
-            ←
-          </button>
-          <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-4 rounded-full shadow-lg hover:bg-[#ffc091]/20 transition z-30"
-            aria-label="Scroll right"
-          >
-            →
-          </button>
         </div>
       </div>
     </section>

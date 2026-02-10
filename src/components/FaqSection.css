@@ -10,7 +10,7 @@
   max-width: 1152px;
   margin-left: auto;
   margin-right: auto;
-  padding: 6rem 1.5rem;
+  padding: 4rem 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -140,7 +140,8 @@
   gap: 3rem;
   margin-top: 5rem;
   padding: 4rem 1.5rem;
-  background-color: #fafafa;
+  background-color: #ffffff;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
   border-radius: 1.5rem;
 }
 
@@ -178,7 +179,8 @@
 .get-in-touch-icons {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1.8rem 2.5rem;
   margin-top: 2rem;
 }
 
@@ -192,9 +194,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 70px;
-  font-size: 2.2rem;
+  width: 68px;
+  height: 68px;
+  font-size: 2.1rem;
   border-radius: 50%;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -210,34 +212,75 @@
   line-height: 1;
 }
 
+/* Platform-specific styles */
 .contact-icon.whatsapp {
+  background-color: #ffffff;
+  color: #25D366;
+}
+
+.contact-icon.whatsapp:hover {
   background-color: #25D366;
   color: white;
 }
 
-.contact-icon.whatsapp:hover {
-  background-color: #20b858;
-}
-
 .contact-icon.phone {
-  background-color: #d4a574;
+  background-color: #ffffff;
   color: #111827;
 }
 
 .contact-icon.phone:hover {
-  background-color: #c89b5f;
+  background-color: #111827;
+  color: white;
 }
 
 .contact-icon.email {
   background-color: #ffffff;
-  color: #d4a574;
-  border: 2px solid #d4a574;
+  color: #ea4335;
 }
 
 .contact-icon.email:hover {
-  background-color: #d4a574;
+  background-color: #ea4335;
   color: white;
-  border-color: transparent;
+}
+
+.contact-icon.facebook {
+  background-color: #ffffff;
+  color: #1877F2;
+}
+
+.contact-icon.facebook:hover {
+  background-color: #1877F2;
+  color: white;
+}
+
+.contact-icon.instagram {
+  background-color: #ffffff;
+  color: #E1306C;
+}
+
+.contact-icon.instagram:hover {
+  background-color: #E1306C;
+  color: white;
+}
+
+.contact-icon.linkedin {
+  background-color: #ffffff;
+  color: #0A66C2;
+}
+
+.contact-icon.linkedin:hover {
+  background-color: #0A66C2;
+  color: white;
+}
+
+.contact-icon.x-twitter {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.contact-icon.x-twitter:hover {
+  background-color: #000000;
+  color: white;
 }
 
 /* Image */
@@ -275,13 +318,13 @@
   }
 
   .get-in-touch-icons {
-    gap: 2rem;
+    gap: 1.6rem 2rem;
   }
 
   .contact-icon {
-    width: 65px;
-    height: 65px;
-    font-size: 2rem;
+    width: 62px;
+    height: 62px;
+    font-size: 1.95rem;
   }
 }
 
@@ -296,24 +339,62 @@
   }
 
   .get-in-touch-icons {
-    gap: 1.8rem;
+    gap: 1.4rem 1.8rem;
   }
 
   .contact-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.9rem;
+    width: 58px;
+    height: 58px;
+    font-size: 1.85rem;
   }
 }
 
 @media (max-width: 480px) {
   .get-in-touch-icons {
-    gap: 1.5rem;
+    gap: 1.2rem 1.6rem;
   }
 
   .contact-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 1.8rem;
+    width: 54px;
+    height: 54px;
+    font-size: 1.75rem;
   }
+}
+/* Logo Images Styling */
+.contact-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;           /* gives breathing space inside circle */
+  transition: transform 0.3s ease;
+}
+
+.contact-icon:hover img {
+  transform: scale(1.15);
+}
+
+/* Keep your existing .contact-icon styles and just update background on hover */
+
+.contact-icon.whatsapp:hover {
+  background-color: #25D366;
+}
+
+.contact-icon.gmail:hover {
+  background-color: #EA4335;
+}
+
+.contact-icon.facebook:hover {
+  background-color: #1877F2;
+}
+
+.contact-icon.instagram:hover {
+  background-color: #E4405F;
+}
+
+.contact-icon.linkedin:hover {
+  background-color: #0A66C2;
+}
+
+.contact-icon.x-twitter:hover {
+  background-color: #000000;
 }

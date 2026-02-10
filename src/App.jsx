@@ -7,7 +7,7 @@ import FeaturesSection from './components/FeaturesSection.jsx';
 import Header09 from './components/Header09.jsx';
 import CarGallerySection from './components/CarGallerySection.jsx';
 import FaqSection from './components/FaqSection.jsx';
-import EmptyHeroBackground from './components/EmptyHeroBackground.jsx';
+//import EmptyHeroBackground from './components/EmptyHeroBackground.jsx';
 import SocialIconsSection from './components/SocialIconsSection.jsx';
 import TestimonialsSection from './components/TestimonialsSection.jsx';
 import ArticleSection from './components/ArticleSection.jsx';
@@ -104,7 +104,7 @@ function App() {
         overlayOpacity={0.9}
       />
 
-      {/* Dramatic full-screen video spacer */}
+      {/* Dramatic full-screen video spacer 
       <EmptyHeroBackground
         fullScreen={true}
         fullWidth={true}
@@ -116,9 +116,9 @@ function App() {
         overlay={true}
         overlayColor="#000000"
         overlayOpacity={0.3}
-      />
+      />*/}
 
-      {/* Social media connect section */}
+      {/* Social media connect section 
       <SocialIconsSection
         paddingTop={6}
         paddingBottom={6}
@@ -133,7 +133,7 @@ function App() {
           value: '#ffffff',
         }}
         overlay={false}
-      />
+      />*/}
 
       {/* ==================================================
           Testimonials carousel
